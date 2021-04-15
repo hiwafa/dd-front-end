@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "858604963621",
+    "firebase_url": "https://ddialog-f097c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ddialog-f097c",
+    "storage_bucket": "ddialog-f097c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858604963621:android:4005a40573ae223ee13ccc",
+        "android_client_info": {
+          "package_name": "com.example.deepdialog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858604963621-1b65e55umn36gjvccenni4d2ha36ai11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqa2i3AWDDkR3Pc__fcA99lBVlRSUu11o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858604963621-1b65e55umn36gjvccenni4d2ha36ai11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

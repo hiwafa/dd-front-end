@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Deep Dialogue</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="input_placeholder">Write a message</string>
+    <string name="default_notification_channel_id">858604963621</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="startFeed">Start Feed</string>
+    <string name="groups">Groups</string>
+    <string name="chat">Chat</string>
+    <string name="account">Account</string>
+    <string name="logout">Logout</string>
+    <string name="contDesc">MeetOthers Logo</string>
+    <string name="feedone">feedONe</string>
+    <string name="feedtwo">feedTwo</string>
+    <string name="aboutMe">About Me</string>
+    <string name="sports">Sports</string>
+    <string name="movies">Movies</string>
+    <string name="fashion">Fashion</string>
+    <string name="music">Music</string>
+    <string name="politics">Politics</string>
+    <string name="myGroups">My Groups</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <!--Login-->
+    <string name="swipe_left_for_register">Swipe Left for Register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">Email</string>
+    <!--Register-->
+    <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+</resources>
