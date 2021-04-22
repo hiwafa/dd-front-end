@@ -1,4 +1,8 @@
-# DeepDialog
+# DeepDialog Frontend
+The frontend is written in JavaScript and React Native.
+
+Expo is used to make it easier to develop, build and deploy for various platforms.
+
 ## How to use
 1) open terminal of choice
 ```
