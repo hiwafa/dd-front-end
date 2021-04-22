@@ -1,58 +1,94 @@
 import React from 'react';
-import {StyleSheet,Text,View,Image,TextInput} from 'react-native';
+import {ImageBackground, StyleSheet,Text,View,Image,TextInput} from 'react-native';
 
 export default class Register extends React.Component{
     render(){
         const {navigate} = this.props.navigation
         return(
-            <View style={{backgroundColor:'#fff', height:'100%'}}>
-                <Image source={require('../res/icon.png')} style={{width:'100%', height:'50%'}}/>
+            <View style={{backgroundColor:'black', height:'100%'}}>
+                <ImageBackground source={require('../res/login_background_image.png')} style={{height:'100%'}}>
+                <Image source={require('../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo}/>
+                {/*BACKGROUND VIEW*/}
 
-                <View style={styles.field}>
-                    <TextInput placeholder='name@email.com' style={{paddingHorizontal:10, width:'100%'}}/>
+                <View style={styles.registerContainer}>
+                    {/*REGISTER VIEW*/}
+
+                    <Text style={styles.header}>Welcome,</Text>
+                    <Text style={styles.header}>Sign up here</Text>
+
+                    {/*Input fields*/}
+                    <Text style={styles.fieldText}>Email address</Text>
+                    <View style={styles.field}>
+                        <TextInput placeholder='Enter your email' style={{paddingHorizontal:10, width:'100%'}}/>
+                    </View>
+
+                    <Text style={styles.fieldText}>Password</Text>
+                    <View style={styles.field}>
+                        <TextInput secureTextEntry placeholder='Enter password' style={{paddingHorizontal:10, width:'100%'}}/>
+                    </View>
+
+                    <Text style={styles.fieldText}>Confirm Password</Text>
+                    <View style={styles.field}>
+                        <TextInput secureTextEntry placeholder='Confirm password' style={{paddingHorizontal:10, width:'100%'}}/>
+                    </View>
+
+                    {/*Buttons*/}
+                    <View style={styles.button}>
+                        <Text onPress={() => navigate('Login')} style={{color:'white'}}>
+                            Create account
+                        </Text>
+                    </View>
+
                 </View>
 
-                <View style={styles.field}>
-                    <TextInput secureTextEntry placeholder='password' style={{paddingHorizontal:10, width:'100%'}}/>
-                </View>
-
-                <View style={styles.field}>
-                    <TextInput secureTextEntry placeholder='confirm password' style={{paddingHorizontal:10, width:'100%'}}/>
-                </View>
-
-                <View style={styles.button}>
-                    <Text style={{color:'white'}}>
-                        Register
-                    </Text>
-                </View>
-
-                <Text onPress={() => navigate('Login')} style={{alignSelf:'center', paddingVertical:30}}>
-                    Sign In
-                </Text>
+                </ImageBackground>
             </View>
         )
     }
 }
 
-
 const styles = StyleSheet.create({
   field: {
     flexDirection:'row',
     alignItem:'center',
-    marginTop:20,
-    marginHorizontal:55,
+    marginTop:4,
+    marginHorizontal:25,
     paddingHorizontal:10,
-    paddingVertical:2,
-    borderWidth:2,
-    borderRadius:25,
+    paddingVertical:20,
+    borderRadius:16,
+    backgroundColor:'#F1F3F9'
   },
   button: {
-    marginHorizontal:55,
+    marginHorizontal:25,
     alignItems:'center',
     justifyContent:'center',
-    marginTop:30,
-    backgroundColor:'#000',
-    paddingVertical:5,
-    borderRadius:25
+    marginTop:50,
+    backgroundColor:'#FF4773',
+    paddingVertical:20,
+    borderRadius:32,
+    marginBottom:'12%'
+  },
+  fieldText: {
+    color:'black',
+    marginHorizontal:25,
+    marginTop:50
+  },
+  header: {
+    textAlign:'center',
+    color:'black',
+    fontSize: 36,
+    fontWeight: "bold"
+  },
+  logo: {
+    marginVertical:50,
+    marginHorizontal:75,
+    height:'4%',
+    resizeMode: 'contain'
+  },
+  registerContainer: {
+    backgroundColor:'#fff',
+    borderRadius:16,
+    marginHorizontal:55,
+    paddingTop:40
   },
 });

@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet,Text,View,Image,TextInput} from 'react-native';
+import {ImageBackground, StyleSheet,Text,View,Image,TextInput} from 'react-native';
 
 export default class Login extends React.Component{
     render(){
         const {navigate} = this.props.navigation
         return(
             <View style={{backgroundColor:'black', height:'100%'}}>
-                <Image source={require('../res/dd_logo_whiteText_horizontal.png')} style={styles.logo}/>
+                <ImageBackground source={require('../res/login_background_image.png')} style={{height:'100%'}}>
+                <Image source={require('../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo}/>
                 {/*BACKGROUND VIEW*/}
 
                 <View style={styles.loginContainer}>
@@ -33,16 +34,17 @@ export default class Login extends React.Component{
                         </Text>
                     </View>
 
-                    <View style={{flexDirection:'column', marginLeft:25, paddingVertical:'6%'}}>
-                        <Text onPress={() => navigate('Register')} style={styles.link}>
+                    <View style={{flexDirection: 'row', paddingVertical:'12%'}}>
+                        <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
                             Forgot password?
                         </Text>
-                        <Text onPress={() => navigate('Register')} style={styles.link}>
+                        <Text onPress={() => navigate('Register')} style={styles.linkRight}>
                             Create account
                         </Text>
                     </View>
                 </View>
 
+                </ImageBackground>
             </View>
         )
     }
@@ -68,9 +70,17 @@ const styles = StyleSheet.create({
     paddingVertical:20,
     borderRadius:32
   },
-  link: {
+  linkRight: {
     color:'#929292',
-    textDecorationLine:'underline'
+    textDecorationLine:'underline',
+    position: 'absolute',
+    right: 25
+  },
+  linkLeft: {
+    color:'#929292',
+    textDecorationLine:'underline',
+    position: 'absolute',
+    left: 25
   },
   fieldText: {
     color:'black',
@@ -84,9 +94,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   logo: {
-    height:'10%',
-    marginHorizontal:'25%',
-    marginVertical:25
+    marginVertical:50,
+    marginHorizontal:75,
+    height:'4%',
+    resizeMode: 'contain'
   },
   loginContainer: {
     backgroundColor:'#fff',
