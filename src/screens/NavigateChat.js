@@ -26,7 +26,6 @@ export default class NavigateChat extends React.Component{
               ItemSeparatorComponent={this.ItemSeprator}
               renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
             />
-          //  <Text><ChatListItem chatRoom={rooms[0]}/></Text>
           </View>
         </View>
       );
