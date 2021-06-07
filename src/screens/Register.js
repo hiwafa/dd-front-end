@@ -50,7 +50,7 @@ export default class Register extends React.Component{
 const styles = StyleSheet.create({
   field: {
     flexDirection:'row',
-    alignItem:'center',
+    alignItems:'center',
     marginTop:4,
     marginHorizontal:25,
     paddingHorizontal:10,
