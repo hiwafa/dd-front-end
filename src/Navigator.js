@@ -11,20 +11,46 @@ const Stack = createStackNavigator();
 
 export default () => {
 
-    return (
-        <NavigationContainer
+    const [isLoggedIn, setLoggedIn] = useState(false);
 
-        >
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName="Login"
-            >
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Register" component={Register} />
-                <Stack.Screen name="Profile" component={Profile} />
-            </Stack.Navigator>
+    useEffect(() => {
+        /*
+            we can add some logic here to check wether is logged in or not
+            Here we just suppose we logged in
+        */
+
+        const checkLogin = true;
+        if (checkLogin) {
+            setLoggedIn(true);
+        }
+
+    }, []);
+
+
+
+    return (
+        <NavigationContainer>
+            {
+                isLoggedIn === false ?
+                    <Stack.Navigator
+                        screenOptions={{
+                            headerShown: false
+                        }}
+                        initialRouteName="Login"
+                    >
+                        <Stack.Screen name="Login" component={Login} />
+                        <Stack.Screen name="Register" component={Register} />
+                    </Stack.Navigator>
+                    :
+                    <Stack.Navigator
+                        screenOptions={{
+                            headerShown: false
+                        }}
+                        initialRouteName="Profile"
+                    >
+                        <Stack.Screen name="Profile" component={Profile} />
+                    </Stack.Navigator>
+            }
         </NavigationContainer>
     );
 }
