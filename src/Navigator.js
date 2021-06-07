@@ -7,13 +7,17 @@ import Register from './screens/Register';
 
 const Stack = createStackNavigator();
 
-export default ()=> {
+export default () => {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} options={{he}}/>
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Navigator initialRouteName="Login">
+                <Stack.Screen name="Login" component={Login} options={{ he }} />
+                <Stack.Screen name="Register" component={Register} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
-  }
+}
