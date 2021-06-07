@@ -1,20 +1,20 @@
 import React from 'react';
 import {ImageBackground, StyleSheet,Text,View,Image,TextInput} from 'react-native';
 
-export default class Register extends React.Component{
+export default class Login extends React.Component{
     render(){
         const {navigate} = this.props.navigation
         return(
             <View style={{backgroundColor:'black', height:'100%'}}>
-                <ImageBackground source={require('../res/login_background_image.png')} style={{height:'100%'}}>
-                <Image source={require('../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo}/>
+                <ImageBackground source={require('../../res/login_background_image.png')} style={{height:'100%'}}>
+                <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo}/>
                 {/*BACKGROUND VIEW*/}
 
-                <View style={styles.registerContainer}>
-                    {/*REGISTER VIEW*/}
+                <View style={styles.loginContainer}>
+                    {/*LOGIN VIEW*/}
 
                     <Text style={styles.header}>Welcome,</Text>
-                    <Text style={styles.header}>Sign up here</Text>
+                    <Text style={styles.header}>Log in here</Text>
 
                     {/*Input fields*/}
                     <Text style={styles.fieldText}>Email address</Text>
@@ -24,21 +24,24 @@ export default class Register extends React.Component{
 
                     <Text style={styles.fieldText}>Password</Text>
                     <View style={styles.field}>
-                        <TextInput secureTextEntry placeholder='Enter password' style={{paddingHorizontal:10, width:'100%'}}/>
-                    </View>
-
-                    <Text style={styles.fieldText}>Confirm Password</Text>
-                    <View style={styles.field}>
-                        <TextInput secureTextEntry placeholder='Confirm password' style={{paddingHorizontal:10, width:'100%'}}/>
+                        <TextInput secureTextEntry placeholder='Enter your password' style={{paddingHorizontal:10, width:'100%'}}/>
                     </View>
 
                     {/*Buttons*/}
                     <View style={styles.button}>
-                        <Text onPress={() => navigate('Login')} style={{color:'white'}}>
-                            Create account
+                        <Text style={{color:'white'}}>
+                            Login
                         </Text>
                     </View>
 
+                    <View style={{flexDirection: 'row', paddingVertical:'12%'}}>
+                        <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
+                            Forgot password?
+                        </Text>
+                        <Text onPress={() => navigate('Register')} style={styles.linkRight}>
+                            Create account
+                        </Text>
+                    </View>
                 </View>
 
                 </ImageBackground>
@@ -65,8 +68,19 @@ const styles = StyleSheet.create({
     marginTop:50,
     backgroundColor:'#FF4773',
     paddingVertical:20,
-    borderRadius:32,
-    marginBottom:'12%'
+    borderRadius:32
+  },
+  linkRight: {
+    color:'#929292',
+    textDecorationLine:'underline',
+    position: 'absolute',
+    right: 25
+  },
+  linkLeft: {
+    color:'#929292',
+    textDecorationLine:'underline',
+    position: 'absolute',
+    left: 25
   },
   fieldText: {
     color:'black',
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
     height:'4%',
     resizeMode: 'contain'
   },
-  registerContainer: {
+  loginContainer: {
     backgroundColor:'#fff',
     borderRadius:16,
     marginHorizontal:55,
