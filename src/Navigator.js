@@ -1,19 +1,19 @@
-import {createStackNavigator} from 'react-navigation-stack';
-import {createAppContainer} from 'react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import Login from './screens/Login';
 import Register from './screens/Register';
 
-const options = {
-    headerShown:false
-}
 
-const Navigator = createStackNavigator(
-{
-    Login:{screen:Login},
-    Register:{screen:Register},
-},
-{
-    defaultNavigationOptions : options
-});
+const Stack = createStackNavigator();
 
-export default createAppContainer(Navigator);
+export default ()=> {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} options={{he}}/>
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
