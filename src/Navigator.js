@@ -8,38 +8,19 @@ import Login from "./screens/login";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
 import ChatBox from "./screens/chatbox";
+import ChatList from "./screens/chatlist";
+import Settings from "./screens/settings";
 
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function AccountScreen({navigation}) {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Welcome to Account Screen</Text>
-            <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
-                <Text>Go To Profile</Text>
-            </TouchableOpacity>
-        </View>
-    );
-}
-
-function ChatList({navigation}) {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Welcome to Chat List</Text>
-            <TouchableOpacity onPress={()=> navigation.navigate("ChatBox")}>
-                <Text>Go to Chat Box</Text>
-            </TouchableOpacity>
-        </View>
-    );
-}
 
 const TabNav = () => {
     return (
         <Tab.Navigator>
             <Tab.Screen name="ChatList" component={ChatList} />
-            <Tab.Screen name="AccountScreen" component={AccountScreen} />
+            <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     );
 }
@@ -85,7 +66,7 @@ export default () => {
                     >
                         
                         <Stack.Screen name="TabNav" component={TabNav} />
-                        <Stack.Screen name="Profile" component={Profile} />
+                        <Stack.Screen name="Settings" component={Settings} />
                         <Stack.Screen name="ChatBox" component={ChatBox} />
                     </Stack.Navigator>
             }
