@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 import styles from "./screens/styles";
 
 
-const SplushScreen = () => {
+const SplashScreen = () => {
 
     return (
         <View style={styles.container}>
@@ -58,7 +58,7 @@ export default () => {
 
 
     const loadScreens = () => {
-        if (isLoggedIn === 0) return <SplushScreen />;
+        if (isLoggedIn === 0) return <SplashScreen />;
         if (isLoggedIn === 1) return (
             <Stack.Navigator
                 screenOptions={{
