@@ -8,8 +8,8 @@ export default ({navigation})=> {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=> navigation.navigate("ChatBox")}>
-                <Text>Go settings</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("SettingsScreen")}>
+                <Text>Chat Box</Text>
             </TouchableOpacity>
             
         </View>

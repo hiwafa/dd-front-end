@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from "./screens/login";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
+import ChatBox from "./screens/chatbox";
 
 
 const Stack = createStackNavigator();
@@ -79,6 +80,7 @@ export default () => {
                         
                         <Stack.Screen name="TabNav" component={TabNav} />
                         <Stack.Screen name="Profile" component={Profile} />
+                        <Stack.Screen name="ChatBox" component={ChatBox} />
                     </Stack.Navigator>
             }
         </NavigationContainer>
