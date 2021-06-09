@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,18 +13,24 @@ import ChatBox from "./screens/chatbox";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function HomeScreen() {
+function AccountScreen({navigation}) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Home!</Text>
+            <Text>Welcome to Account Screen</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+                <Text>Go To Profile</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
-function SettingsScreen() {
+function ChatList({navigation}) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Settings!</Text>
+            <Text>Welcome to Chat List</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("ChatBox")}>
+                <Text>Go to Chat Box</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -32,8 +38,8 @@ function SettingsScreen() {
 const TabNav = () => {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="HomeScreen" component={HomeScreen} />
-            <Tab.Screen name="SettingsScreen" component={SettingsScreen} />
+            <Tab.Screen name="ChatList" component={ChatList} />
+            <Tab.Screen name="AccountScreen" component={AccountScreen} />
         </Tab.Navigator>
     );
 }

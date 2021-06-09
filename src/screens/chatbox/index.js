@@ -8,10 +8,10 @@ export default ({navigation})=> {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=> navigation.navigate("SettingsScreen")}>
-                <Text>Chat Box</Text>
+            <Text>Welcome to Chat Box</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("AccountScreen")}>
+                <Text>Go to Account Screen Tab</Text>
             </TouchableOpacity>
-            
         </View>
     );
 }
