@@ -15,6 +15,17 @@ import Settings from "./screens/settings";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+import styles from "./screens/styles";
+
+
+const SplushScreen = () => {
+
+    return (
+        <View style={styles.container}>
+            <Text>Welcome to our app</Text>
+        </View>
+    );
+}
 
 const TabNav = () => {
     return (
@@ -27,7 +38,7 @@ const TabNav = () => {
 
 export default () => {
 
-    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(0);
 
     useEffect(() => {
         /*
@@ -36,40 +47,43 @@ export default () => {
         */
 
         const checkLogin = true;
+
         if (checkLogin) {
-            setLoggedIn(true);
+            setLoggedIn(1);
+        } else {
+            setLoggedIn(2);
         }
 
     }, []);
 
 
+    const loadScreens = () => {
+        if (isLoggedIn === 0) return <SplushScreen />;
+        if (isLoggedIn === 1) return (
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false
+                }}
+                initialRouteName="TabNav"
+            >
+
+                <Stack.Screen name="TabNav" component={TabNav} />
+                <Stack.Screen name="Settings" component={Settings} />
+                <Stack.Screen name="ChatBox" component={ChatBox} />
+            </Stack.Navigator>
+        )
+
+        return (
+            <Stack.Navigator>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Register" component={Register} />
+            </Stack.Navigator>
+        )
+    }
 
     return (
         <NavigationContainer>
-            {
-                isLoggedIn === false ?
-                    <Stack.Navigator
-                        screenOptions={{
-                            headerShown: false
-                        }}
-                        initialRouteName="Login"
-                    >
-                        <Stack.Screen name="Login" component={Login} />
-                        <Stack.Screen name="Register" component={Register} />
-                    </Stack.Navigator>
-                    :
-                    <Stack.Navigator
-                        screenOptions={{
-                            headerShown: false
-                        }}
-                        initialRouteName="TabNav"
-                    >
-                        
-                        <Stack.Screen name="TabNav" component={TabNav} />
-                        <Stack.Screen name="Settings" component={Settings} />
-                        <Stack.Screen name="ChatBox" component={ChatBox} />
-                    </Stack.Navigator>
-            }
-        </NavigationContainer>
+            {loadScreens()}
+        </NavigationContainer >
     );
 }
