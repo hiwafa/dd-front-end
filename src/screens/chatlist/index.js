@@ -5,12 +5,11 @@ import { styles } from "../styles";
 
 export default ({navigation})=> {
 
-
     return (
         <View style={styles.container}>
-            <Text>Welcome to Profile</Text>
-            <TouchableOpacity onPress={()=> navigation.navigate("Settings")}>
-                <Text>Go to Settings</Text>
+            <Text>Welcome to Chat List</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("ChatBox")}>
+                <Text>Go to Chat Box</Text>
             </TouchableOpacity>
         </View>
     );

@@ -8,9 +8,9 @@ export default ({navigation})=> {
 
     return (
         <View style={styles.container}>
-            <Text>Welcome to Profile</Text>
-            <TouchableOpacity onPress={()=> navigation.navigate("Settings")}>
-                <Text>Go to Settings</Text>
+            <Text>Welcome to Chat Box</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+                <Text>Go to Profile</Text>
             </TouchableOpacity>
         </View>
     );
