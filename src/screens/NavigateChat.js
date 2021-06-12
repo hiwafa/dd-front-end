@@ -22,9 +22,11 @@ export default class NavigateChat extends React.Component{
           </View>
           <View style={styles.container}>
             <FlatList
+              style={{width: '85%'}}
               data={rooms}
               ItemSeparatorComponent={this.ItemSeprator}
               renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
+              keyExtractor={(item) => item.id}
             />
           </View>
         </View>
