@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { chatRoom } from "../../types";
 import chats from '../../data/chats';
 import rooms from '../../data/rooms';
-import ChatListItem from "../../data/ChatListItem";
+import ChatListItem from "../../components/ChatListItem";
 
 export default class NavigateChat extends React.Component{
     ItemSeprator = () => <View style={{

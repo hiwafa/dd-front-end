@@ -2,7 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Login from './screens/Login';
 import Register from './screens/Register';
-//import Chat from './screens/Chat';
+import ChatRoomScreen from './screens/ChatRoomScreen';
 import NavigateChat from './screens/NavigateChat'
 
 const options = {
@@ -11,8 +11,8 @@ const options = {
 
 const Navigator = createStackNavigator(
 {
+    ChatRoomScreen:{screen:ChatRoomScreen},
     NavigateChat:{screen:NavigateChat},
-    //Chat:{screen:Chat},
     Login:{screen:Login},
     Register:{screen:Register}
 
