@@ -15,7 +15,13 @@ const ChatMessage = (props: ChatMessageProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[
+      styles.container, {
+        alignSelf: myMessage() ? 'flex-end' : 'flex-start',
+        paddingLeft: myMessage() ? 10 : 0,
+        paddingRight: myMessage() ? 0 : 10,
+      }
+    ]}>
       <View style={[
         styles.message, {
             backgroundColor: myMessage() ? 'gray' : '#2037A5',
@@ -33,6 +39,7 @@ const ChatMessage = (props: ChatMessageProps) => {
 const styles = StyleSheet.create ({
   container: {
     padding: 10,
+    marginTop: 10,
   },
   message: {
     borderRadius: 5,
