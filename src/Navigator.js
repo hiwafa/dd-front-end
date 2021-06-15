@@ -22,7 +22,7 @@ const SplashScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>Welcome to our app</Text>
+            <Text>We can display Splash Image Here</Text>
         </View>
     );
 }
