@@ -17,7 +17,7 @@ import {  ImageBackground,
           TextInput} 
 from 'react-native';
 
-import Category from './components/Explore/Category';
+import Category from '../components/Explore/Category';
 
 /* Device dimenstions */
 const windowWidth = Dimensions.get('window').width;
