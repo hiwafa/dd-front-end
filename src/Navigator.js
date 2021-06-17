@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Home from "./screens/home";
 import Login from "./screens/login";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
@@ -30,6 +31,7 @@ const SplashScreen = () => {
 const TabNav = () => {
     return (
         <Tab.Navigator>
+            <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="ChatList" component={ChatList} />
             <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
