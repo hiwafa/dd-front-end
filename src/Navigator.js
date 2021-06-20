@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import UserImage from '../components/UserImage';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Login from "./screens/login";
 import Register from "./screens/register";
@@ -11,12 +13,10 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 import styles from "./screens/styles";
-
 
 const SplashScreen = () => {
 
@@ -69,7 +69,18 @@ export default () => {
 
                 <Stack.Screen name="TabNav" component={TabNav} />
                 <Stack.Screen name="Settings" component={Settings} />
-                <Stack.Screen name="ChatBox" component={ChatBox} />
+                <Stack.Screen name="ChatBox" component={ChatBox}
+                  options={({route}) => ({
+                    headerShown: true,
+                    headerLeft: props => <UserImage userImage={route.params.userImage} />,
+                    title: route.params.name,
+                    headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon}/>,
+                    headerStyle: {
+                      backgroundColor: '#efddbb',
+                    },
+
+                  })}/>
+
             </Stack.Navigator>
         )
 

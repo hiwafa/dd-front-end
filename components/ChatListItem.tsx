@@ -10,11 +10,11 @@ export type ChatListItemProps = {
 
 const ChatListItem = (props: ChatListItemProps) => {
   const { chatRoom } = props;
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
   const user = chatRoom.users[1];
 
   const onClick = () => {
-    //navigate('ChatRoomScreen', { id: chatRoom.id, name: user.name })
+    navigation.navigate('ChatBox', { name: user.name, userImage: user.imageUri })
     console.warn('Clicked on ' + user.name);
   };
 

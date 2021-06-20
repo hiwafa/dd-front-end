@@ -6,8 +6,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    videoIcon: {
+      paddingRight: 15,
     }
 });
 
 
-module.exports = { styles };
+//module.exports = { styles };  //common JS
+export default styles;

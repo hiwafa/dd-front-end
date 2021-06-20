@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { chatRoom } from "../../../types";
 import chats from '../../../data/chats';
 import rooms from '../../../data/rooms';
@@ -13,6 +13,7 @@ export default class ChatList extends React.Component{
     }} />
 
     render(){
+      const {navigate} = this.props.navigation
       return(
         <View>
           <View style={styles.topContainer}>
@@ -27,9 +28,6 @@ export default class ChatList extends React.Component{
               keyExtractor={(item) => item.id}
             />
           </View>
-          <TouchableOpacity onPress={()=> navigation.navigate("ChatBox")}>
-              <Text>Go to Chat Box</Text>
-          </TouchableOpacity>
         </View>
       );
     }

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const InputTextBox = () => {
+  const [message, setMessage] = useState();
+
+  const onSendPress = () => {
+    console.log('Sending:' + message)
+    setMessage('');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -10,10 +17,13 @@ const InputTextBox = () => {
           <MaterialCommunityIcons name="microphone" size={30} color="#2037A5"/>
         </View>
         <TextInput
+          placeholder={"Type a new message..."}
           style={styles.textInputBox}
           multiline
+          value={message}
+          onChangeText={setMessage}
         />
-        <TouchableOpacity style={styles.sendButton}>
+        <TouchableOpacity style={styles.sendButton} onPress={onSendPress}>
           <Text style={styles.sendText}>Send</Text>
         </TouchableOpacity>
       </View>
@@ -45,6 +55,7 @@ const styles = StyleSheet.create ({
     flex: 1,
     marginVertical: 10,
     minHeight: 30,
+    paddingTop: 5,
   },
   sendButton: {
     justifyContent: 'center',
