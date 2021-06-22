@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 
 const localStyle = StyleSheet.create({
     profielImageView: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 100
     },
     profileImage: {
         width: 180,

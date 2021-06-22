@@ -52,6 +52,31 @@ export default ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
+
+                <Text>{"\n"}</Text>
+
+                <Text style={{ ...styles.smallTitle }}>Login Details</Text>
+
+                <View style={localStyle.inputTextView}>
+                    <Text style={localStyle.inputLable}>Email: </Text>
+                    <TextInput
+                        style={localStyle.inputText}
+                    />
+                    <TouchableOpacity style={localStyle.inputClearIconView}>
+                        <Text style={localStyle.inputClearIcon}>x</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={localStyle.inputTextView}>
+                    <Text style={localStyle.inputLable}>Password: </Text>
+                    <TextInput
+                        style={localStyle.inputText}
+                    />
+                    <TouchableOpacity style={localStyle.inputClearIconView}>
+                        <Text style={localStyle.inputClearIcon}>x</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     );
