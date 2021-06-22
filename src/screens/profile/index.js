@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Platform} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Platform } from 'react-native';
 
 
 import { Ionicons, Entypo } from '@expo/vector-icons';
@@ -14,20 +14,28 @@ export default ({ navigation }) => {
 
     const pickImage = async () => {
 
+        if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+                alert('Please Allow to add a photo!');
+                return;
+            }
+        }
+
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
-    
+
         console.log(result);
-    
+
         if (!result.cancelled) {
-          // add the image
+            // add the image
         }
     };
-    
+
 
     return (
         <View style={styles.container}>
