@@ -1,19 +1,39 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Platform} from 'react-native';
 
 
 import { Ionicons, Entypo } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 import { styles } from "../styles";
 import { localStyle } from "./style";
 
 export default ({ navigation }) => {
 
+
+
+    const pickImage = async () => {
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          // add the image
+        }
+    };
+    
+
     return (
         <View style={styles.container}>
 
             <View style={localStyle.profielImageView}>
-                <TouchableOpacity style={localStyle.profileImage}>
+                <TouchableOpacity style={localStyle.profileImage} onPress={pickImage}>
                     <Entypo name="camera" size={45} color="grey" />
                 </TouchableOpacity>
                 <Text>Edit Profile Picture</Text>
