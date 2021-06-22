@@ -13,17 +13,16 @@ export default ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <>
-                <TouchableOpacity style={localStyle.profileImageView}>
+            <View style={localStyle.profielImageView}>
+                <TouchableOpacity style={localStyle.profileImage}>
                     <Entypo name="camera" size={45} color="grey" />
                 </TouchableOpacity>
                 <Text>Edit Profile Picture</Text>
-            </>
+            </View>
 
-
-            <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-                <Text>Go to Settings</Text>
-            </TouchableOpacity>
+            <View style={localStyle.buttonContainer}>
+                <Text style={{...styles.smallTitle}}>Personal Information</Text>
+            </View>
         </View>
     );
 }
