@@ -23,9 +23,13 @@ export default ({ navigation }) => {
                 <Text style={{ ...styles.smallTitle }}>Personal Information</Text>
 
                 <View style={localStyle.inputTextView}>
-                    <Text>Username: </Text>
+                    <Text style={localStyle.inputLable}>Username: </Text>
                     <TextInput
+                        style={localStyle.inputText}
                     />
+                    <TouchableOpacity style={localStyle.inputClearIconView}>
+                        <Text style={localStyle.inputClearIcon}>x</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>
