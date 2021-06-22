@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 
 import { Ionicons, Entypo } from '@expo/vector-icons';
@@ -8,7 +8,6 @@ import { styles } from "../styles";
 import { localStyle } from "./style";
 
 export default ({ navigation }) => {
-
 
     return (
         <View style={styles.container}>
@@ -21,7 +20,14 @@ export default ({ navigation }) => {
             </View>
 
             <View style={localStyle.buttonContainer}>
-                <Text style={{...styles.smallTitle}}>Personal Information</Text>
+                <Text style={{ ...styles.smallTitle }}>Personal Information</Text>
+
+                <View style={localStyle.inputTextView}>
+                    <Text>Username: </Text>
+                    <TextInput
+                    />
+                </View>
+
             </View>
         </View>
     );

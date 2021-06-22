@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 
 const localStyle = StyleSheet.create({
     profielImageView: {
-        marginTop: 100,
         alignItems: 'center'
     },
     profileImage: {
@@ -17,8 +16,16 @@ const localStyle = StyleSheet.create({
         marginBottom: 10
     },
     buttonContainer: {
-        // flex: 1,
+        width: '85%',
         margin: 100
+    },
+    inputTextView: {
+        width: '100%',
+        height: 80,
+        elevation: 2,
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: '#fff',
     }
 });
 
