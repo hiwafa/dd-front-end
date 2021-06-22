@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 const localStyle = StyleSheet.create({
     profielImageView: {
         alignItems: 'center',
-        marginTop: 100
+        marginTop: 150
     },
     profileImage: {
         width: 180,
@@ -13,12 +13,13 @@ const localStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 5,
-        borderColor: 'lightblue',
+        borderColor: 'rgba(48, 28, 136, 0.5)',
         marginBottom: 10
     },
     buttonContainer: {
         width: '85%',
-        margin: 100
+        margin: 100,
+        marginTop: 25
     },
     inputTextView: {
         width: '100%',
@@ -48,7 +49,6 @@ const localStyle = StyleSheet.create({
         marginRight: 10
     },
     inputClearIcon: {
-
         color: "#000",
         fontSize: 10,
         fontWeight: 'bold',
@@ -63,6 +63,18 @@ const localStyle = StyleSheet.create({
         height: 16,
         borderRadius: 8,
         marginRight: 10,
+    },
+    topicsView: {
+        marginTop: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    topicsLable: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginLeft: 5,
+        marginRight: 5
     }
 });
 

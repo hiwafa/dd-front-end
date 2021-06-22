@@ -77,6 +77,13 @@ export default ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
+                <View style={localStyle.topicsView}>
+                    <Text style={localStyle.topicsLable}>Topics</Text>
+                    <TouchableOpacity>
+                        <Text style={{ ...localStyle.topicsLable, color: '#301C88' }}>Add topics</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     );
