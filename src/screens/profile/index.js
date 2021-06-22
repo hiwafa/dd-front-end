@@ -32,6 +32,26 @@ export default ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
+                <View style={localStyle.inputTextView}>
+                    <Text style={localStyle.inputLable}>Given name: </Text>
+                    <TextInput
+                        style={localStyle.inputText}
+                    />
+                    <TouchableOpacity style={localStyle.inputClearIconView}>
+                        <Text style={localStyle.inputClearIcon}>x</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={localStyle.inputTextView}>
+                    <Text style={localStyle.inputLable}>Family name: </Text>
+                    <TextInput
+                        style={localStyle.inputText}
+                    />
+                    <TouchableOpacity style={localStyle.inputClearIconView}>
+                        <Text style={localStyle.inputClearIcon}>x</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     );

@@ -23,7 +23,7 @@ const localStyle = StyleSheet.create({
         width: '100%',
         height: 60,
         elevation: 2,
-        shadowColor: '#ddd',
+        shadowColor: '#eee',
         shadowOffset: {
             width: 0,
             height: 3
@@ -34,6 +34,7 @@ const localStyle = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff',
+        borderRadius: 2
     },
     inputLable: {
         fontSize: 18,
