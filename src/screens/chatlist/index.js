@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { chatRoom } from "../../../types";
-import chats from '../../../data/chats';
 import rooms from '../../../data/rooms';
 import ChatListItem from "../../../components/ChatListItem";
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default class ChatList extends React.Component{
     ItemSeprator = () => <View style={{
@@ -15,18 +18,19 @@ export default class ChatList extends React.Component{
     render(){
       const {navigate} = this.props.navigation
       return(
-        <View>
+        <View style={{height: windowHeight, width: windowWidth, backgroundColor: '#fbf2e1'}}>
           <View style={styles.topContainer}>
             <Text style={styles.title}>Recent Conversations</Text>
           </View>
           <View style={styles.container}>
-            <FlatList
-              style={{width: '85%'}}
-              data={rooms}
-              ItemSeparatorComponent={this.ItemSeprator}
-              renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
-              keyExtractor={(item) => item.id}
-            />
+            <View style={{flex: 1}}>
+              <FlatList
+                data={rooms}
+                ItemSeparatorComponent={this.ItemSeprator}
+                renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
+                keyExtractor={(item) => item.id}
+              />
+            </View>
           </View>
         </View>
       );
@@ -36,10 +40,10 @@ export default class ChatList extends React.Component{
 
 const styles = StyleSheet.create ({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fbf2e1',
+  //  backgroundColor: '#fbf2e1',
+    //width: '100%'
 
   },
   topContainer: {
@@ -53,7 +57,7 @@ const styles = StyleSheet.create ({
     paddingBottom: 20,
   },
   listItem: {
-    flexGrow: 5,
+    //flexGrow: 5,
     paddingBottom: 20,
   }
 });

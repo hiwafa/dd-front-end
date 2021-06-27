@@ -18,8 +18,7 @@ const ChatMessage = (props: ChatMessageProps) => {
     <View style={[
       styles.container, {
         alignSelf: myMessage() ? 'flex-end' : 'flex-start',
-        paddingLeft: myMessage() ? 10 : 0,
-        paddingRight: myMessage() ? 0 : 10,
+
       }
     ]}>
       <View style={[
@@ -27,6 +26,8 @@ const ChatMessage = (props: ChatMessageProps) => {
             backgroundColor: myMessage() ? 'gray' : '#2037A5',
             marginLeft: myMessage() ? 50 : 0,
             marginRight: myMessage() ? 0 : 50,
+            borderTopRightRadius: myMessage() ? 0: 10,
+            borderTopLeftRadius: myMessage() ? 10: 0,
         }
       ]}>
         <Text style={styles.content}>{message.content}</Text>
@@ -42,7 +43,8 @@ const styles = StyleSheet.create ({
     marginTop: 10,
   },
   message: {
-    borderRadius: 5,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     padding: 10,
   },
   content: {
