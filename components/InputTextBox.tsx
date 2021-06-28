@@ -10,23 +10,6 @@ const InputTextBox = () => {
     setMessage('');
   }
 
-  // useEffect(() => {
-  //   fetch('https://api.deepdialog.se/chat/', {
-  //     {
-  //       method: 'get',
-  //       headers: new Headers({
-  //       })
-  //   })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       console.log(json.chat)
-  //       return json.chat;
-  //     })
-  //     .catch((error) => {
-  //     console.error(error);
-  //   });
-  // });
-
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -81,8 +64,6 @@ const styles = StyleSheet.create ({
     backgroundColor: "#2037A5",
     borderRadius: 50,
     flex: 1,
-    //width: 50,
-    //marginLeft: 50,
   },
   sendText: {
     color: 'white',

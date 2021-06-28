@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     },
     videoIcon: {
       paddingRight: 15,
+    },
+    smallTitle: {
+        fontSize: 18,
     }
 });
 

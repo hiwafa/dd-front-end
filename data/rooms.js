@@ -142,4 +142,36 @@ export default [{
     content: 'Meet me at the same place',
     createdAt: '2020-09-25T15:40:00.000Z',
   },
+}, {
+  id: '10',
+  users: [{
+    id: 'u1',
+    name: 'Julia',
+    imageUri: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
+  }, {
+    id: 'u10',
+    name: 'New',
+    imageUri: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
+  }],
+  lastMessage: {
+    id: 'm10',
+    content: 'Meet me at the same place',
+    createdAt: '2020-09-25T15:40:00.000Z',
+  },
+}, {
+  id: '11',
+  users: [{
+    id: 'u1',
+    name: 'Julia',
+    imageUri: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
+  }, {
+    id: 'u11',
+    name: 'Another New',
+    imageUri: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
+  }],
+  lastMessage: {
+    id: 'm11',
+    content: 'Meet me at the same place',
+    createdAt: '2020-09-25T15:40:00.000Z',
+  },
 }]

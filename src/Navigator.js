@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import UserImage from '../components/UserImage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import Home from "./screens/home";
 import Login from "./screens/login";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
@@ -22,7 +23,7 @@ const SplashScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>Welcome to our app</Text>
+            <Text>We can display Splash Image Here</Text>
         </View>
     );
 }
@@ -30,8 +31,12 @@ const SplashScreen = () => {
 const TabNav = () => {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="ChatList" component={ChatList} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="ChatList" component={ChatList}
+              screenOptions={{
+                  drawUnderTabBar: false
+              }}/>
+            <Tab.Screen name="Profile" component={Profile}/>
         </Tab.Navigator>
     );
 }

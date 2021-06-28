@@ -17,7 +17,7 @@ import {  ImageBackground,
           TextInput}
 from 'react-native';
 
-import Category from './components/Explore/Category';
+import Category from '../../components/Explore/Category';
 
 /* Device dimenstions */
 const windowWidth = Dimensions.get('window').width;
@@ -59,53 +59,53 @@ export default class HomeScreen extends React.Component{
     render(){
         const {navigate} = this.props.navigation
         return(
-           <View style={{backgroundColor:'white', height: windowHeight}}>
+           <View style={{backgroundColor:'white', height: windowHeight,}}>
               <ScrollView scrollEventThrottle={16} showsHorizontalScrollIndicator={false}>
                 <View>
                   <Text style={styles.headerH1}>My Upcoming Calls</Text>
                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                      <Category
-                        imageUri={require('../res/login_background_image.png')}
+                        imageUri={require('../../res/login_background_image.png')}
                         cardHeader={'Music'}
                         cardInfo={'HipHop'}/>
 					 <Category
-                        imageUri={require('../res/login_background_image.png')}
+                        imageUri={require('../../res/login_background_image.png')}
                         cardHeader={'Music'}
                         cardInfo={'HipHop'}/>
                      <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                      <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                   </ScrollView>
                   <Text style={styles.header}>Daily Matches</Text>
                   <Text style={styles.subHeader}>Start an anonymous conversation</Text>
                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                   </ScrollView>
                   <Text style={styles.header}>Daily Public Calls</Text>
                   <Text style={styles.subHeader}>Pick a topic and join the call anonymously</Text>
                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                   </ScrollView>
                   <Text style={styles.header}>Trending Topics</Text>
                   <Text style={styles.subHeader}>Pick a topic and join the call anonymously</Text>
                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                       <Category
-                        imageUri={require('../res/login_background_image.png')}/>
+                        imageUri={require('../../res/login_background_image.png')}/>
                   </ScrollView>
                 </View>
               </ScrollView>
