@@ -5,8 +5,8 @@ import { View, Text, TouchableOpacity, TextInput, Platform } from 'react-native'
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
-import { styles } from "../styles";
-import { localStyle } from "./style";
+import styles from "../styles";
+import localStyle from "./style";
 
 export default ({ navigation }) => {
 
@@ -40,7 +40,7 @@ export default ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <View style={localStyle.profielImageView}>
+            <View style={localStyle.profileImageView}>
                 <TouchableOpacity style={localStyle.profileImage} onPress={pickImage}>
                     <Entypo name="camera" size={45} color="grey" />
                 </TouchableOpacity>
