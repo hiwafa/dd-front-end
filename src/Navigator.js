@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import UserImage from './components/UserImage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSelector, useDispatch } from "react-redux";
+import UserImage from './components/UserImage';
 
 import Home from "./screens/home";
 import Login from "./screens/login";
@@ -13,6 +14,8 @@ import Profile from "./screens/profile";
 import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
+
+import { signup } from "./store/actions/UserSlice";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -44,8 +47,26 @@ const TabNav = () => {
 export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+
+
+        const asyncFunc = async ()=> {
+
+            const { payload } = await dispatch(signup({
+                "grant_type": "password",
+                "username": "muhammad121",
+                "password": "mohammad@2021",
+                "email": "TestEmail1@gmail.com"
+            }));
+
+            console.log("payload : ", payload);
+        };
+
+        asyncFunc();
+
+
         /*
             we can add some logic here to check wether is logged in or not
             Here we just suppose we logged in

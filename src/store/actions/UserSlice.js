@@ -1,9 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
+import request from "./../../api";
+import { DD_OAUTH_CLIENT_ID, DD_OAUTH_CLIENT_SECRET } from "@env";
+
 export const signup = createAsyncThunk("user/signup",
     async (params, metaData) => {
-        
+        try {
+            const { data } = await request('auth/register', {
+                method: "POST", data: params, headers: {
+                    "Authorization": DD_OAUTH_CLIENT_SECRET
+                }
+            });
+
+            console.log("Data: ", data);
+
+            return data;
+        } catch (err) {
+            console.log("Error: ", err);
+        }
     }
 );
 
@@ -15,12 +30,21 @@ const userSlice = createSlice({
         lastname: null,
         email: null,
         username: null,
-        password: null
+        password: null,
+        status: "idle"
     },
     reducers: {
     },
     extraReducers: {
-
+        [signup.pending]: (state, action) => {
+            state.status = "pending"
+        },
+        [signup.rejected]: (state, action) => {
+            state.status = "rejected"
+        },
+        [signup.fulfilled]: (state, { payload }) => {
+            state.status = "fulfilled"
+        }
     }
 });
 
