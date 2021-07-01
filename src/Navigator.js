@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import UserImage from '../components/UserImage';
+import UserImage from './components/UserImage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Home from "./screens/home";
