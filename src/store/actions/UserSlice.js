@@ -7,10 +7,8 @@ import { DD_OAUTH_CLIENT_ID, DD_OAUTH_CLIENT_SECRET } from "@env";
 export const signup = createAsyncThunk("user/signup",
     async (params, metaData) => {
         try {
-            const { data } = await request('auth/register', {
-                method: "POST", data: params, headers: {
-                    "Authorization": DD_OAUTH_CLIENT_SECRET
-                }
+            const { data } = await request('auth/register/', {
+                method: "POST", data: params
             });
 
             console.log("Data: ", data);
