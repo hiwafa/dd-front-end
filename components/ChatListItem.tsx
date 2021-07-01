@@ -59,13 +59,12 @@ const styles = StyleSheet.create ({
     fontSize: 16,
   },
   lastMessage: {
-    fontsize: 11,
+    fontSize: 11,
     color: 'grey',
   },
   time: {
-    fontsize: 11,
-    color: 'grey',
-    fontSize: 10,
+    fontSize: 11,
+    color: 'grey'
   }
 });
 
