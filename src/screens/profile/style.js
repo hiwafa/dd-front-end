@@ -78,5 +78,5 @@ const localStyle = StyleSheet.create({
     }
 });
 
-
-module.exports = { localStyle };
+export default localStyle;
+//module.exports = { localStyle };

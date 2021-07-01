@@ -7,10 +7,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    videoIcon: {
+      paddingRight: 15,
+    },
     smallTitle: {
-        fontSize: 18
+        fontSize: 18,
     }
 });
 
 
-module.exports = { styles };
+//module.exports = { styles };  //common JS
+export default styles;

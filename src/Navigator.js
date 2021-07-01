@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import UserImage from '../components/UserImage';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Home from "./screens/home";
 import Login from "./screens/login";
@@ -12,12 +14,10 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 import styles from "./screens/styles";
-
 
 const SplashScreen = () => {
 
@@ -32,8 +32,11 @@ const TabNav = () => {
     return (
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="ChatList" component={ChatList} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="ChatList" component={ChatList}
+              screenOptions={{
+                  drawUnderTabBar: false
+              }}/>
+            <Tab.Screen name="Profile" component={Profile}/>
         </Tab.Navigator>
     );
 }
@@ -71,7 +74,18 @@ export default () => {
 
                 <Stack.Screen name="TabNav" component={TabNav} />
                 <Stack.Screen name="Settings" component={Settings} />
-                <Stack.Screen name="ChatBox" component={ChatBox} />
+                <Stack.Screen name="ChatBox" component={ChatBox}
+                  options={({route}) => ({
+                    headerShown: true,
+                    headerLeft: props => <UserImage userImage={route.params.userImage} />,
+                    title: route.params.name,
+                    headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon}/>,
+                    headerStyle: {
+                      backgroundColor: '#efddbb',
+                    },
+
+                  })}/>
+
             </Stack.Navigator>
         )
 
