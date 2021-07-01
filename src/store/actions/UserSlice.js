@@ -1,5 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+
+export const signup = createAsyncThunk("user/signup",
+    async (params, metaData) => {
+        
+    }
+);
 
 const userSlice = createSlice({
 
@@ -12,18 +18,12 @@ const userSlice = createSlice({
         password: null
     },
     reducers: {
-        login: (state, {payload}) => {
-
-        },
-        signup: (state, {payload}) => {
-
-        }
     },
     extraReducers: {
 
     }
 });
 
-export const {} = userSlice.actions;
+export const { } = userSlice.actions;
 
 export default userSlice.reducer;
