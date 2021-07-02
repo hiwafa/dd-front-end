@@ -55,7 +55,7 @@ export default () => {
         const asyncFunc = async ()=> {
 
             const { payload } = await dispatch(signup({
-                username: "muhawwkkd1",
+                username: "muhawwkkd12",
                 password: "mohammad@2021",
                 email: "TestllEmail1@gmail.com"
             }));

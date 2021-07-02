@@ -26,7 +26,7 @@ export default class Category extends Component {
 const styles = StyleSheet.create({
     
     cardHeader: {
-      fontFamily: 'DMSans-Bold.ttf',
+    //   fontFamily: 'DMSans-Bold.ttf',
       fontStyle: "normal",
       fontSize: 8,
       lineHeight: 16,
