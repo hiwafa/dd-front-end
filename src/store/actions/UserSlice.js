@@ -14,10 +14,30 @@ export const signup = createAsyncThunk("user/signup",
             });
 
             if(data && data.access_token && data.expires_in){
-                saveSecure(data);
+                saveSecure("credential", data);
+                return data;
             }
 
-            return data;
+            return thunkAPI.rejectWithValue("you are not authenticated");
+
+        } catch (err) {
+
+            return thunkAPI.rejectWithValue(err.message);
+        }
+    }
+);
+
+export const loadCredential = createAsyncThunk("user/loadCredential",
+    async (params, thunkAPI) => {
+        try {
+
+            const data = await getValueFor("credential");
+
+            if(data && data.access_token && data.expires_in) {
+                return data;
+            }
+
+            return thunkAPI.rejectWithValue("you are not authenticated");
 
         } catch (err) {
 
@@ -32,10 +52,12 @@ const userSlice = createSlice({
     initialState: {
         firstname: null,
         lastname: null,
-        email: null,
         username: null,
         password: null,
-        status: "idle"
+        status: "idle",
+        email: null,
+        expiresIn: 0,
+        accessToken: null,
     },
     reducers: {
     },
@@ -47,8 +69,24 @@ const userSlice = createSlice({
             state.status = "rejected"
         },
         [signup.fulfilled]: (state, { payload }) => {
-            state.status = "fulfilled"
-        }
+            state = {
+                ...state, ...payload,
+                status: "fulfilled"
+            }
+        },
+
+        [loadCredential.pending]: (state, action) => {
+            state.status = "pending"
+        },
+        [loadCredential.rejected]: (state, action) => {
+            state.status = "rejected"
+        },
+        [loadCredential.fulfilled]: (state, { payload }) => {
+            state = {
+                ...state, ...payload,
+                status: "fulfilled"
+            }
+        },
     }
 });
 

@@ -15,6 +15,8 @@ async function getValueFor(key) {
         return null;
 
     } catch (err) {
+        
+        return null;
     }
 }
 
