@@ -29,6 +29,7 @@ export default ({ navigation: { navigate } }) => {
         if (result && result.access_token && result.expires_in) {
           // navigate('Login');
         } else {
+          
           alert("Something went wrong, please try again!");
         }
 
@@ -117,11 +118,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 50,
     backgroundColor: '#FF4773',
-    paddingVertical: 20,
     borderRadius: 32,
-    marginBottom: '12%'
+    marginBottom: '12%',
+    marginTop: 50,
+    height: 50
   },
   fieldText: {
     color: 'black',
@@ -144,6 +145,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     marginHorizontal: 55,
-    paddingTop: 40
+    paddingTop: 20
   },
 });

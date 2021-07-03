@@ -9,6 +9,8 @@ export const signup = createAsyncThunk("user/signup",
     async (params, thunkAPI) => {
         try {
 
+            console.log("Called sing up");
+            
             const { data } = await formRequest('auth/register/', {
                 method: "POST", data: queryString.stringify(params)
             });
@@ -27,7 +29,6 @@ export const signup = createAsyncThunk("user/signup",
 
         } catch (err) {
 
-            console.log("ERRRRRRRORRR: ", err);
             return thunkAPI.rejectWithValue(err.message);
         }
     }
