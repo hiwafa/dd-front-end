@@ -13,10 +13,6 @@ export const signup = createAsyncThunk("user/signup",
                 method: "POST", data: qs.stringify(params)
             });
 
-            // const data = await formRequest(params);
-
-            console.log("data-> ", data);
-
             if(data && data.access_token && data.expires_in){
                 saveSecure("credential", {
                     ...data, ...params
