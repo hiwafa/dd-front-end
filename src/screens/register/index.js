@@ -27,6 +27,7 @@ export default ({ navigation: { navigate } }) => {
         const result = unwrapResult(dispatchedResult);
 
         if (result && result.access_token && result.expires_in) {
+          console.log("result =>", result);
           // navigate('Login');
         } else {
           

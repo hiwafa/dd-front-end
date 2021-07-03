@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-const queryString = require('query-string');
+const qs = require('qs');
 
 import { saveSecure, getValueFor } from "../secure";
 
@@ -9,23 +9,22 @@ export const signup = createAsyncThunk("user/signup",
     async (params, thunkAPI) => {
         try {
 
-            console.log("Called sing up", params);
-
             const { data } = await formRequest('auth/register/', {
-                method: "POST", data: queryString.stringify(params)
+                method: "POST", data: qs.stringify(params)
             });
 
+            // const data = await formRequest(params);
+
+            console.log("data-> ", data);
+
             if(data && data.access_token && data.expires_in){
-                saveSecure("credential", data);
+                saveSecure("credential", {
+                    ...data, ...params
+                });
                 return data;
             }
 
-            if(data && data.username && Array.isArray(data.username)){
-
-                return thunkAPI.rejectWithValue("username_exist");
-            }
-
-            return thunkAPI.rejectWithValue("un_uthenticated_user");
+            return thunkAPI.rejectWithValue(qs.stringify(data));
 
         } catch (err) {
 
@@ -38,13 +37,7 @@ export const loadCredential = createAsyncThunk("user/loadCredential",
     async (params, thunkAPI) => {
         try {
 
-            const data = await getValueFor("credential");
-
-            if(data && data.access_token && data.expires_in) {
-                return data;
-            }
-
-            return thunkAPI.rejectWithValue("you are not authenticated");
+            return (await getValueFor("credential"));
 
         } catch (err) {
 
@@ -58,11 +51,11 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         email: null,
-        expiresIn: 0,
+        expires_in: 0,
         username: null,
         password: null,
         status: "idle",
-        accessToken: null,
+        access_token: null,
         reasonForRejection: null
     },
     reducers: {
@@ -73,13 +66,14 @@ const userSlice = createSlice({
         },
         [signup.rejected]: (state, action) => {
             state.status = "rejected";
-            state.reasonForRejection = action.payload;
+            state.reasonForRejection = qs.parse(action.payload);
         },
         [signup.fulfilled]: (state, { payload }) => {
-            state = {
+            console.log("payload: ", payload)
+            return {
                 ...state, ...payload,
                 status: "fulfilled"
-            }
+            };
         },
 
         [loadCredential.pending]: (state, action) => {
@@ -90,7 +84,7 @@ const userSlice = createSlice({
             state.reasonForRejection = action.payload;
         },
         [loadCredential.fulfilled]: (state, { payload }) => {
-            state = {
+            return {
                 ...state, ...payload,
                 status: "fulfilled"
             }

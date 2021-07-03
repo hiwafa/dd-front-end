@@ -15,7 +15,7 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-import { signup, getUser } from "./store/actions/UserSlice";
+import { getUser, loadCredential } from "./store/actions/UserSlice";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,41 +48,22 @@ export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
     const user = useSelector(getUser);
-    
+    const dispatch = useDispatch();
 
     console.log("user : ", user);
 
     useEffect(() => {
 
+        const asyncFunc = async ()=> {
+            const {payload} = await dispatch(loadCredential(null));
+            if(payload.access_token && payload.expires_in) {
+                setLoggedIn(1);
+            }else{
+                setLoggedIn(2);
+            }
+        };
 
-        // const asyncFunc = async () => {
-
-        //     const { payload } = await dispatch(signup({
-        //         grant_type: "password",
-        //         username: "muhammad" + (Math.round(Math.random()*99999)),
-        //         password: "Moh@2021",
-        //         email: "mohammad@gmail.com"
-        //     }));
-
-        //     console.log("payload : ", payload);
-        // };
-
-        // asyncFunc();
-
-
-        /*
-            we can add some logic here to check wether is logged in or not
-            Here we just suppose we logged in
-        */
-
-        const checkLogin = false;
-
-        if (user.status === "fulfilled") {
-            
-            setLoggedIn(1);
-        } else {
-            setLoggedIn(2);
-        }
+        asyncFunc();
 
     }, [user]);
 
