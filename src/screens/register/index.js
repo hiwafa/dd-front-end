@@ -1,11 +1,36 @@
 import React, { useReducer } from 'react';
-import { ImageBackground, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+
+import { useDispatch } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { signup } from "../../store/actions/UserSlice";
 
 export default ({ navigation: { navigate } }) => {
 
-  const [state, setState] = useReducer((_, v)=> v, {
-    username: null, password: null, email: null
+  const [state, setState] = useReducer((_, v) => v, {
+    username: "", password: "", email: "",
+    confirmpass: ""
   });
+
+  const dispatch = useDispatch();
+
+  const createAccount = async () => {
+
+    const { username, password, email, confirmpass } = state;
+
+    if (username.length > 2 && password.length > 5 && password === confirmpass && email.length > 4) {
+
+      const result = await unwrapResult(dispatch(signup({
+        grant_type: "password",
+        username, password, email
+      })));
+
+      console.log("RRRRRRRRRRRR: ", result);
+
+    }
+
+    // navigate('Login');
+  };
 
   return (
     <View style={{ backgroundColor: 'black', height: '100%' }}>
@@ -22,30 +47,46 @@ export default ({ navigation: { navigate } }) => {
           {/*Input fields*/}
           <Text style={styles.fieldText}>Email address</Text>
           <View style={styles.field}>
-            <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }} />
+            <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={email => {
+                setState({ ...state, email });
+              }}
+            />
           </View>
 
           <Text style={styles.fieldText}>Username</Text>
           <View style={styles.field}>
-            <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }} />
+            <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={username => {
+                setState({ ...state, username });
+              }}
+            />
           </View>
 
           <Text style={styles.fieldText}>Password</Text>
           <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }} />
+            <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={password => {
+                setState({ ...state, password });
+              }}
+            />
           </View>
 
           <Text style={styles.fieldText}>Confirm Password</Text>
           <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Confirm password' style={{ paddingHorizontal: 10, width: '100%' }} />
+            <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={confirmpass => {
+                setState({ ...state, confirmpass });
+              }}
+            />
           </View>
 
           {/*Buttons*/}
-          <View style={styles.button}>
-            <Text onPress={() => navigate('Login')} style={{ color: 'white' }}>
+          <TouchableOpacity style={styles.button}>
+            <Text onPress={createAccount} style={{ color: 'white' }}>
               Create account
             </Text>
-          </View>
+          </TouchableOpacity>
 
         </View>
 
