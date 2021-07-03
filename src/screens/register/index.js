@@ -91,8 +91,8 @@ export default ({ navigation: { navigate } }) => {
         </View>
 
         {/*Buttons*/}
-        <TouchableOpacity style={styles.button}>
-          <Text onPress={createAccount} style={{ color: 'white' }}>
+        <TouchableOpacity style={styles.button} onPress={createAccount}>
+          <Text style={{ color: 'white' }}>
             Create account
           </Text>
         </TouchableOpacity>
