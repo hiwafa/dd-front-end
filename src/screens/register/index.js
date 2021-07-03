@@ -20,16 +20,25 @@ export default ({ navigation: { navigate } }) => {
 
     if (username.length > 2 && password.length > 5 && password === confirmpass && email.length > 4) {
 
-      const result = await unwrapResult(dispatch(signup({
+      const dispatchedResult = await dispatch(signup({
         grant_type: "password",
         username, password, email
-      })));
+      }));
 
-      console.log("RRRRRRRRRRRR: ", result);
+      const result = unwrapResult(dispatchedResult);
 
+      if(result && result.access_token && result.expires_in){
+        // navigate('Login');
+      }else {
+        alert("Something went wrong, please try again!");
+      }
+
+    }else {
+
+      alert("Please fill the correct value");
     }
 
-    // navigate('Login');
+    // 
   };
 
   return (

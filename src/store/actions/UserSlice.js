@@ -50,14 +50,13 @@ const userSlice = createSlice({
 
     name: "user",
     initialState: {
-        firstname: null,
-        lastname: null,
+        email: null,
+        expiresIn: 0,
         username: null,
         password: null,
         status: "idle",
-        email: null,
-        expiresIn: 0,
         accessToken: null,
+        reasonForRejection: null
     },
     reducers: {
     },
@@ -66,7 +65,8 @@ const userSlice = createSlice({
             state.status = "pending"
         },
         [signup.rejected]: (state, action) => {
-            state.status = "rejected"
+            state.status = "rejected";
+            state.reasonForRejection = action.payload;
         },
         [signup.fulfilled]: (state, { payload }) => {
             state = {
@@ -79,7 +79,8 @@ const userSlice = createSlice({
             state.status = "pending"
         },
         [loadCredential.rejected]: (state, action) => {
-            state.status = "rejected"
+            state.status = "rejected";
+            state.reasonForRejection = action.payload;
         },
         [loadCredential.fulfilled]: (state, { payload }) => {
             state = {
