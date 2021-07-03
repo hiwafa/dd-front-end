@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const queryString = require('query-string');
 
+import { saveSecure, getValueFor } from "../secure";
+
 import { formRequest } from "./../../api";
 
 export const signup = createAsyncThunk("user/signup",
@@ -10,6 +12,10 @@ export const signup = createAsyncThunk("user/signup",
             const { data } = await formRequest('auth/register/', {
                 method: "POST", data: queryString.stringify(params)
             });
+
+            if(data && data.access_token && data.expires_in){
+                saveSecure(data);
+            }
 
             return data;
 

@@ -55,19 +55,19 @@ export default () => {
     useEffect(() => {
 
 
-        const asyncFunc = async () => {
+        // const asyncFunc = async () => {
 
-            const { payload } = await dispatch(signup({
-                grant_type: "password",
-                username: "muhammad" + (Math.round(Math.random()*99999)),
-                password: "Moh@2021",
-                email: "mohammad@gmail.com"
-            }));
+        //     const { payload } = await dispatch(signup({
+        //         grant_type: "password",
+        //         username: "muhammad" + (Math.round(Math.random()*99999)),
+        //         password: "Moh@2021",
+        //         email: "mohammad@gmail.com"
+        //     }));
 
-            console.log("payload : ", payload);
-        };
+        //     console.log("payload : ", payload);
+        // };
 
-        asyncFunc();
+        // asyncFunc();
 
 
         /*
@@ -75,7 +75,7 @@ export default () => {
             Here we just suppose we logged in
         */
 
-        const checkLogin = true;
+        const checkLogin = false;
 
         if (checkLogin) {
             setLoggedIn(1);
