@@ -2,12 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 import request from "./../../api";
-import { DD_OAUTH_CLIENT_ID, DD_OAUTH_CLIENT_SECRET } from "@env";
 
 export const signup = createAsyncThunk("user/signup",
-    async (params, metaData) => {
+    async (params, thunkAPI) => {
         try {
-            
+
             const { data } = await request('auth/register/', {
                 method: "POST", data: params
             });
@@ -15,8 +14,8 @@ export const signup = createAsyncThunk("user/signup",
             return data;
 
         } catch (err) {
-            console.log("Error: ", err);
-            return metaData.rejectWithValue(err);
+
+            return thunkAPI.rejectWithValue(err.message);
         }
     }
 );
@@ -48,5 +47,6 @@ const userSlice = createSlice({
 });
 
 export const { } = userSlice.actions;
+export const getUser = (state)=> state.user;
 
 export default userSlice.reducer;

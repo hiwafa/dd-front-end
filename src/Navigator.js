@@ -15,7 +15,7 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-import { signup } from "./store/actions/UserSlice";
+import { signup, getUser } from "./store/actions/UserSlice";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,10 +36,10 @@ const TabNav = () => {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="ChatList" component={ChatList}
-              screenOptions={{
-                  drawUnderTabBar: false
-              }}/>
-            <Tab.Screen name="Profile" component={Profile}/>
+                screenOptions={{
+                    drawUnderTabBar: false
+                }} />
+            <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     );
 }
@@ -47,18 +47,30 @@ const TabNav = () => {
 export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
+    const user = useSelector(getUser);
     const dispatch = useDispatch();
+
+    console.log("user : ", user);
 
     useEffect(() => {
 
 
-        const asyncFunc = async ()=> {
+        const asyncFunc = async () => {
+
+            // const { payload } = await dispatch(signup({
+            //     grant_type: "password",
+            //     username: "muhammad11122" + (Math.round(Math.random()*999)),
+            //     password: "Moh@20213333",
+            //     email: "mohammad@gmail.com"
+            // }));
 
             const { payload } = await dispatch(signup({
-                username: "muhawwkkd12",
-                password: "mohammad@2021",
-                email: "TestllEmail1@gmail.com"
+                'grant_type': 'password',
+                'username': 'test233',
+                'password': 'asdkjb1asddf2asd123',
+                'email': 'test222@email.com'
             }));
+
 
             console.log("payload : ", payload);
         };
@@ -95,16 +107,16 @@ export default () => {
                 <Stack.Screen name="TabNav" component={TabNav} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="ChatBox" component={ChatBox}
-                  options={({route}) => ({
-                    headerShown: true,
-                    headerLeft: props => <UserImage userImage={route.params.userImage} />,
-                    title: route.params.name,
-                    headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon}/>,
-                    headerStyle: {
-                      backgroundColor: '#efddbb',
-                    },
+                    options={({ route }) => ({
+                        headerShown: true,
+                        headerLeft: props => <UserImage userImage={route.params.userImage} />,
+                        title: route.params.name,
+                        headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon} />,
+                        headerStyle: {
+                            backgroundColor: '#efddbb',
+                        },
 
-                  })}/>
+                    })} />
 
             </Stack.Navigator>
         )
