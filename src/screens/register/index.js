@@ -42,65 +42,63 @@ export default ({ navigation: { navigate } }) => {
   };
 
   return (
-    <View style={{ backgroundColor: 'black', height: '100%' }}>
-      <ImageBackground source={require('../../res/login_background_image.png')} style={{ height: '100%' }}>
-        <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} />
-        {/*BACKGROUND VIEW*/}
+    <ImageBackground source={require('../../res/login_background_image.png')} style={{ backgroundColor: 'black', height: '100%' }}>
+      <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} />
+      {/*BACKGROUND VIEW*/}
 
-        <View style={styles.registerContainer}>
-          {/*REGISTER VIEW*/}
+      <View style={styles.registerContainer}>
+        {/*REGISTER VIEW*/}
 
-          <Text style={styles.header}>Welcome,</Text>
-          <Text style={styles.header}>Sign up here</Text>
+        <Text style={styles.header}>Welcome,</Text>
+        <Text style={styles.header}>Sign up here</Text>
 
-          {/*Input fields*/}
-          <Text style={styles.fieldText}>Email address</Text>
-          <View style={styles.field}>
-            <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }}
-              onChangeText={email => {
-                setState({ ...state, email });
-              }}
-            />
-          </View>
-
-          <Text style={styles.fieldText}>Username</Text>
-          <View style={styles.field}>
-            <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
-              onChangeText={username => {
-                setState({ ...state, username });
-              }}
-            />
-          </View>
-
-          <Text style={styles.fieldText}>Password</Text>
-          <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
-              onChangeText={password => {
-                setState({ ...state, password });
-              }}
-            />
-          </View>
-
-          <Text style={styles.fieldText}>Confirm Password</Text>
-          <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
-              onChangeText={confirmpass => {
-                setState({ ...state, confirmpass });
-              }}
-            />
-          </View>
-
-          {/*Buttons*/}
-          <TouchableOpacity style={styles.button}>
-            <Text onPress={createAccount} style={{ color: 'white' }}>
-              Create account
-            </Text>
-          </TouchableOpacity>
-
+        {/*Input fields*/}
+        <Text style={styles.fieldText}>Email address</Text>
+        <View style={styles.field}>
+          <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={email => {
+              setState({ ...state, email });
+            }}
+          />
         </View>
 
-      </ImageBackground>
-    </View>
+        <Text style={styles.fieldText}>Username</Text>
+        <View style={styles.field}>
+          <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={username => {
+              setState({ ...state, username });
+            }}
+          />
+        </View>
+
+        <Text style={styles.fieldText}>Password</Text>
+        <View style={styles.field}>
+          <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={password => {
+              setState({ ...state, password });
+            }}
+          />
+        </View>
+
+        <Text style={styles.fieldText}>Confirm Password</Text>
+        <View style={styles.field}>
+          <TextInput secureTextEntry placeholder='Enter password' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={confirmpass => {
+              setState({ ...state, confirmpass });
+            }}
+          />
+        </View>
+
+        {/*Buttons*/}
+        <TouchableOpacity style={styles.button}>
+          <Text onPress={createAccount} style={{ color: 'white' }}>
+            Create account
+          </Text>
+        </TouchableOpacity>
+
+      </View>
+
+    </ImageBackground>
   )
 }
 
