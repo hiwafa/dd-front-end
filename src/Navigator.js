@@ -57,20 +57,12 @@ export default () => {
 
         const asyncFunc = async () => {
 
-            // const { payload } = await dispatch(signup({
-            //     grant_type: "password",
-            //     username: "muhammad11122" + (Math.round(Math.random()*999)),
-            //     password: "Moh@20213333",
-            //     email: "mohammad@gmail.com"
-            // }));
-
             const { payload } = await dispatch(signup({
-                'grant_type': 'password',
-                'username': 'test233',
-                'password': 'asdkjb1asddf2asd123',
-                'email': 'test222@email.com'
+                grant_type: "password",
+                username: "muhammad11122" + (Math.round(Math.random()*999)),
+                password: "Moh@20213333",
+                email: "mohammad@gmail.com"
             }));
-
 
             console.log("payload : ", payload);
         };

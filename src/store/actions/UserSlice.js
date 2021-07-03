@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const queryString = require('query-string');
 
-
-import request from "./../../api";
+import { formRequest } from "./../../api";
 
 export const signup = createAsyncThunk("user/signup",
     async (params, thunkAPI) => {
         try {
 
-            const { data } = await request('auth/register/', {
-                method: "POST", data: params
+            const { data } = await formRequest('auth/register/', {
+                method: "POST", data: queryString.stringify(params)
             });
 
             return data;
@@ -47,6 +47,6 @@ const userSlice = createSlice({
 });
 
 export const { } = userSlice.actions;
-export const getUser = (state)=> state.user;
+export const getUser = (state) => state.user;
 
 export default userSlice.reducer;
