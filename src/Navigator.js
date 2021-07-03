@@ -59,8 +59,8 @@ export default () => {
 
             const { payload } = await dispatch(signup({
                 grant_type: "password",
-                username: "muhammad11122" + (Math.round(Math.random()*999)),
-                password: "Moh@20213333",
+                username: "muhammad" + (Math.round(Math.random()*99999)),
+                password: "Moh@2021",
                 email: "mohammad@gmail.com"
             }));
 
