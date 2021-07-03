@@ -48,7 +48,7 @@ export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
     const user = useSelector(getUser);
-    const dispatch = useDispatch();
+    
 
     console.log("user : ", user);
 
@@ -77,13 +77,14 @@ export default () => {
 
         const checkLogin = false;
 
-        if (checkLogin) {
+        if (user.status === "fulfilled") {
+            
             setLoggedIn(1);
         } else {
             setLoggedIn(2);
         }
 
-    }, []);
+    }, [user]);
 
 
     const loadScreens = () => {
