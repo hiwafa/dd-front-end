@@ -18,10 +18,16 @@ export const signup = createAsyncThunk("user/signup",
                 return data;
             }
 
-            return thunkAPI.rejectWithValue("you are not authenticated");
+            if(data && data.username && Array.isArray(data.username)){
+
+                return thunkAPI.rejectWithValue("username_exist");
+            }
+
+            return thunkAPI.rejectWithValue("un_uthenticated_user");
 
         } catch (err) {
 
+            console.log("ERRRRRRRORRR: ", err);
             return thunkAPI.rejectWithValue(err.message);
         }
     }

@@ -15,30 +15,30 @@ export default ({ navigation: { navigate } }) => {
   const dispatch = useDispatch();
 
   const createAccount = async () => {
+    try {
+      const { username, password, email, confirmpass } = state;
+      if (username.length > 2 && password.length > 5 && password === confirmpass && email.length > 4) {
 
-    const { username, password, email, confirmpass } = state;
+        const dispatchedResult = await dispatch(signup({
+          grant_type: "password",
+          username, password, email
+        }));
 
-    if (username.length > 2 && password.length > 5 && password === confirmpass && email.length > 4) {
+        const result = unwrapResult(dispatchedResult);
 
-      const dispatchedResult = await dispatch(signup({
-        grant_type: "password",
-        username, password, email
-      }));
+        if (result && result.access_token && result.expires_in) {
+          // navigate('Login');
+        } else {
+          alert("Something went wrong, please try again!");
+        }
 
-      const result = unwrapResult(dispatchedResult);
+      } else {
 
-      if(result && result.access_token && result.expires_in){
-        // navigate('Login');
-      }else {
-        alert("Something went wrong, please try again!");
+        alert("Please fill the correct value");
       }
+    } catch (err) {
 
-    }else {
-
-      alert("Please fill the correct value");
     }
-
-    // 
   };
 
   return (
