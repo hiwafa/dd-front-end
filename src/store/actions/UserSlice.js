@@ -14,9 +14,13 @@ export const signup = createAsyncThunk("user/signup",
             });
 
             if(data && data.access_token && data.expires_in){
+
+                thunkAPI.dispatch(setUser(params));
+
                 saveSecure("credential", {
                     ...data, ...params
                 });
+
                 return data;
             }
 
@@ -55,6 +59,12 @@ const userSlice = createSlice({
         reasonForRejection: null
     },
     reducers: {
+        setUser: (state, {payload})=> {
+            return {
+                ...state,
+                ...payload
+            }
+        }
     },
     extraReducers: {
         [signup.pending]: (state, action) => {
@@ -88,7 +98,7 @@ const userSlice = createSlice({
     }
 });
 
-export const { } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 export const getUser = (state) => state.user;
 
 export default userSlice.reducer;
