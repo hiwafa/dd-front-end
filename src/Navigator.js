@@ -55,10 +55,11 @@ export default () => {
         dispatch(loadCredential(null));
     }, []);
 
-
     const loadScreens = () => {
 
-        if (isSingIn) return (
+        if(isSingIn ==='loading') return <SplashScreen />;
+
+        if (isSingIn === "loaded") return (
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false

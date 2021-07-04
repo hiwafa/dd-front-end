@@ -21,7 +21,7 @@ export const signup = createAsyncThunk("user/signup",
                     ...data, ...params
                 });
 
-                return { ...data, ...params };
+                return { ...data, ...params, loginStatus: "loaded" };
             }
 
             return thunkAPI.rejectWithValue(qs.stringify(data));
@@ -47,7 +47,7 @@ export const signin = createAsyncThunk("user/signin",
                     ...data, ...params
                 });
 
-                return { ...data, ...params };
+                return { ...data, ...params, loginStatus: "loaded" };
             }
 
             return thunkAPI.rejectWithValue(qs.stringify(data));
@@ -66,10 +66,13 @@ export const loadCredential = createAsyncThunk("user/loadCredential",
             const result = (await getValueFor("credential"));
 
             if(result && result.access_token && result.expires_in){
-                return result;
+                return {...result, loginStatus: "loaded"};
             }
 
-            return thunkAPI.rejectWithValue("No credential exist!");
+            return {
+                ...thunkAPI.getState(),
+                loginStatus: "failed",
+            };
 
         } catch (err) {
 
@@ -88,6 +91,7 @@ const userSlice = createSlice({
         password: null,
         status: "idle",
         access_token: null,
+        loginStatus: "loading",
         reasonForRejection: null
     },
     reducers: {
@@ -149,6 +153,6 @@ const userSlice = createSlice({
 
 export const { setUser } = userSlice.actions;
 export const getUser = (state) => state.user;
-export const isLoggedIn = ({user: {status}}) => status === "fulfilled";
+export const isLoggedIn = ({ user }) => user.loginStatus;
 
 export default userSlice.reducer;
