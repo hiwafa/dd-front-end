@@ -61,7 +61,6 @@ export default () => {
     useEffect(() => {
         const asyncFunc = async ()=> {
             const { payload } = await dispatch(loadCredential(null));
-            console.log("JANJAN: ", payload);
             if(payload && payload.access_token && payload.expires_in) {
                 setLoggedIn(1);
             }else{

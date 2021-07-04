@@ -1,9 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
 import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { signup, getUser } from "../../store/actions/UserSlice";
+import { signup } from "../../store/actions/UserSlice";
 
 
 export default ({ navigation: { navigate } }) => {
@@ -14,8 +14,6 @@ export default ({ navigation: { navigate } }) => {
   });
 
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
-  console.log("USER => ", user);
 
   const createAccount = async () => {
     try {
@@ -30,8 +28,8 @@ export default ({ navigation: { navigate } }) => {
         const result = unwrapResult(dispatchedResult);
 
         if (result && result.access_token && result.expires_in) {
-          console.log("result =>", result);
-          // navigate('Login');
+          
+          navigate('Home');
         } else {
           
           alert("Something went wrong, please try again!");

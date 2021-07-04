@@ -26,12 +26,10 @@ export const signup = createAsyncThunk("user/signup",
                 return { ...data, ...params };
             }
 
-            console.log("response", response);
             return thunkAPI.rejectWithValue(qs.stringify(data));
 
         } catch (err) {
 
-            console.log("response err", JSON.stringify(err));
             return thunkAPI.rejectWithValue(err.message);
         }
     }
@@ -79,11 +77,6 @@ const userSlice = createSlice({
             state.reasonForRejection = qs.parse(action.payload);
         },
         [signup.fulfilled]: (state, { payload }) => {
-            console.log("payload::: ", {
-                ...state, ...payload,
-                status: "fulfilled"
-            });
-
             return {
                 ...state, ...payload,
                 status: "fulfilled"
