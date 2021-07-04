@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,9 +15,7 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-import { getUser, loadCredential } from "./store/actions/UserSlice";
-import * as SecureStore from 'expo-secure-store';
-
+import { loadCredential } from "./store/actions/UserSlice";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -45,31 +43,31 @@ const TabNav = () => {
     );
 }
 
+let _isLoggedIn = 0;
 export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
     const dispatch = useDispatch();
 
+    _isLoggedIn = isLoggedIn;
 
     useEffect(() => {
-
         const asyncFunc = async ()=> {
-            const {payload} = await dispatch(loadCredential(null));
-            if(payload.access_token && payload.expires_in) {
+            const { payload } = await dispatch(loadCredential(null));
+            console.log("JANJAN: ", payload);
+            if(payload && payload.access_token && payload.expires_in) {
                 setLoggedIn(1);
             }else{
                 setLoggedIn(2);
             }
         };
-
         asyncFunc();
-
     }, []);
 
 
     const loadScreens = () => {
-        if (isLoggedIn === 0) return <SplashScreen />;
-        if (isLoggedIn === 1) return (
+        if (_isLoggedIn === 0) return <SplashScreen />;
+        if (_isLoggedIn === 1) return (
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false

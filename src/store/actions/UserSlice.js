@@ -75,7 +75,11 @@ const userSlice = createSlice({
             state.reasonForRejection = qs.parse(action.payload);
         },
         [signup.fulfilled]: (state, { payload }) => {
-            console.log("payload: ", payload)
+            console.log("payload::: ", {
+                ...state, ...payload,
+                status: "fulfilled"
+            });
+
             return {
                 ...state, ...payload,
                 status: "fulfilled"
