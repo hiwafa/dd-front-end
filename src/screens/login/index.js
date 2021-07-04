@@ -34,7 +34,7 @@ export default class Login extends React.Component{
                         </Text>
                     </View>
 
-                    <View style={{flexDirection: 'row', paddingVertical:'12%'}}>
+                    <View style={{flexDirection: 'row', paddingVertical:'10%', marginTop: 20, marginHorizontal: 10}}>
                         <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
                             Forgot password?
                         </Text>
