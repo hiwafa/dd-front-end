@@ -45,37 +45,20 @@ const TabNav = () => {
 
 import * as SecureStore from 'expo-secure-store';
 
-let _isLoggedIn = 0;
 export default () => {
 
-    const [state, setState] = useState(0);
     const isSingIn = useSelector(isLoggedIn);
     const dispatch = useDispatch();
 
-    _isLoggedIn = state;
-
-
-    useEffect(()=> {
-        // SecureStore.deleteItemAsync("credential");
-      }, []);
-
     useEffect(() => {
-        const asyncFunc = async ()=> {
-            const { payload } = await dispatch(loadCredential(null));
-            if(payload && payload.access_token && payload.expires_in) {
-                setState(1);
-            }else{
-                setState(2);
-            }
-        };
-        asyncFunc();
+        // SecureStore.deleteItemAsync("credential");
+        dispatch(loadCredential(null));
     }, []);
 
 
     const loadScreens = () => {
 
-        if (_isLoggedIn === 0) return <SplashScreen />;
-        if (_isLoggedIn === 1 || isSingIn) return (
+        if (isSingIn) return (
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false
