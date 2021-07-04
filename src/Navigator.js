@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import UserImage from './components/UserImage';
 
 import Home from "./screens/home";
@@ -16,6 +16,7 @@ import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
 import { getUser, loadCredential } from "./store/actions/UserSlice";
+import * as SecureStore from 'expo-secure-store';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,10 +48,8 @@ const TabNav = () => {
 export default () => {
 
     const [isLoggedIn, setLoggedIn] = useState(0);
-    const user = useSelector(getUser);
     const dispatch = useDispatch();
 
-    console.log("user : ", user);
 
     useEffect(() => {
 
@@ -65,7 +64,7 @@ export default () => {
 
         asyncFunc();
 
-    }, [user]);
+    }, []);
 
 
     const loadScreens = () => {
