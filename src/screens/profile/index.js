@@ -40,7 +40,7 @@ export default ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <View style={localStyle.profileImageView}>
+            <View style={localStyle.profielImageView}>
                 <TouchableOpacity style={localStyle.profileImage} onPress={pickImage}>
                     <Entypo name="camera" size={45} color="grey" />
                 </TouchableOpacity>

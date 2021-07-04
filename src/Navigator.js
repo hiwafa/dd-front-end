@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import UserImage from '../components/UserImage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from "react-redux";
+import UserImage from './components/UserImage';
 
 import Home from "./screens/home";
 import Login from "./screens/login";
@@ -14,6 +15,7 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
+import { loadCredential, isLoggedIn } from "./store/actions/UserSlice";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -33,38 +35,31 @@ const TabNav = () => {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="ChatList" component={ChatList}
-              screenOptions={{
-                  drawUnderTabBar: false
-              }}/>
-            <Tab.Screen name="Profile" component={Profile}/>
+                screenOptions={{
+                    drawUnderTabBar: false
+                }} />
+            <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     );
 }
 
+import * as SecureStore from 'expo-secure-store';
+
 export default () => {
 
-    const [isLoggedIn, setLoggedIn] = useState(0);
+    const isSingIn = useSelector(isLoggedIn);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        /*
-            we can add some logic here to check wether is logged in or not
-            Here we just suppose we logged in
-        */
-
-        const checkLogin = true;
-
-        if (checkLogin) {
-            setLoggedIn(1);
-        } else {
-            setLoggedIn(2);
-        }
-
+        // SecureStore.deleteItemAsync("credential");
+        dispatch(loadCredential(null));
     }, []);
 
-
     const loadScreens = () => {
-        if (isLoggedIn === 0) return <SplashScreen />;
-        if (isLoggedIn === 1) return (
+
+        if(isSingIn ==='loading') return <SplashScreen />;
+
+        if (isSingIn === "loaded") return (
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false
@@ -75,16 +70,16 @@ export default () => {
                 <Stack.Screen name="TabNav" component={TabNav} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="ChatBox" component={ChatBox}
-                  options={({route}) => ({
-                    headerShown: true,
-                    headerLeft: props => <UserImage userImage={route.params.userImage} />,
-                    title: route.params.name,
-                    headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon}/>,
-                    headerStyle: {
-                      backgroundColor: '#efddbb',
-                    },
+                    options={({ route }) => ({
+                        headerShown: true,
+                        headerLeft: props => <UserImage userImage={route.params.userImage} />,
+                        title: route.params.name,
+                        headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon} />,
+                        headerStyle: {
+                            backgroundColor: '#efddbb',
+                        },
 
-                  })}/>
+                    })} />
 
             </Stack.Navigator>
         )

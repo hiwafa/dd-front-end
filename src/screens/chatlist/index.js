@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { chatRoom } from "../../../types";
 import rooms from '../../../data/rooms';
-import ChatListItem from "../../../components/ChatListItem";
+import ChatListItem from "../../components/ChatListItem";
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 

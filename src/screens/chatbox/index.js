@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { Text, FlatList, View, StyleSheet, Image, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import chats from '../../../data/chats';
-import ChatMessage from "../../../components/ChatMessage";
-import InputTextBox from "../../../components/InputTextBox";
+import ChatMessage from "../../components/ChatMessage";
+import InputTextBox from "../../components/InputTextBox";
 import { useHeaderHeight } from '@react-navigation/stack';
 
 const windowWidth = Dimensions.get('window').width;
