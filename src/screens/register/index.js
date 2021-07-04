@@ -29,7 +29,7 @@ export default ({ navigation: { navigate } }) => {
 
         if (result && result.access_token && result.expires_in) {
           
-          navigate('Home');
+          navigate('TabNav');
         } else {
           
           alert("Something went wrong, please try again!");

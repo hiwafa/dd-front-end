@@ -43,8 +43,6 @@ export const signin = createAsyncThunk("user/signin",
             
             if(data && data.access_token && data.expires_in){
 
-                // thunkAPI.dispatch(setUser(params));
-
                 saveSecure("credential", {
                     ...data, ...params
                 });
@@ -95,6 +93,8 @@ const userSlice = createSlice({
         }
     },
     extraReducers: {
+
+        /* sign up reducer */ 
         [signup.pending]: (state, action) => {
             state.status = "pending"
         },
@@ -108,7 +108,23 @@ const userSlice = createSlice({
                 status: "fulfilled"
             };
         },
+        
+        /* sign in reducer */ 
+        [signin.pending]: (state, action) => {
+            state.status = "pending"
+        },
+        [signin.rejected]: (state, action) => {
+            state.status = "rejected";
+            state.reasonForRejection = qs.parse(action.payload);
+        },
+        [signin.fulfilled]: (state, { payload }) => {
+            return {
+                ...state, ...payload,
+                status: "fulfilled"
+            };
+        },
 
+        /* loading reducer */ 
         [loadCredential.pending]: (state, action) => {
             state.status = "pending"
         },

@@ -8,25 +8,25 @@ export default ({ navigation: { navigate } }) => {
 
 
   const [state, setState] = useReducer((_, v) => v, {
-    password: "", email: ""
+    password: "", username: ""
   });
 
   const dispatch = useDispatch();
 
   const onLogin = async () => {
     try {
-      const { password, email } = state;
-      if (password.length > 5 && email.length > 4) {
+      const { password, username } = state;
+      if (password.length > 5 && username.length > 2) {
 
         const { payload } = await dispatch(signin({
-          grant_type: "password",
-          username, password, email
+          grant_type: "password", password, username
         }));
 
-        if (payload && payload.access_token && payload.expires_in) {   
-          navigate('Home');
-        } else {
+        if (payload && payload.access_token && payload.expires_in) { 
           
+          navigate('TabNav');
+
+        } else {
           alert("Something went wrong, please try again!");
         }
 
@@ -51,11 +51,11 @@ export default ({ navigation: { navigate } }) => {
         <Text style={styles.header}>Log in here</Text>
 
         {/*Input fields*/}
-        <Text style={styles.fieldText}>Email address</Text>
+        <Text style={styles.fieldText}>Username</Text>
         <View style={styles.field}>
-          <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }}
-            onChangeText={email => {
-              setState({ ...state, email });
+          <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={ username => {
+              setState({ ...state, username });
             }}
           />
         </View>
