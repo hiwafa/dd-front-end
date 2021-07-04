@@ -1,7 +1,26 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import React, { useReducer } from 'react';
+import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
 export default ({ navigation: { navigate } }) => {
+
+
+  const [state, setState] = useReducer((_, v) => v, {
+    password: "", email: ""
+  });
+
+  const onLogin = async () => {
+    try {
+      const { password, email } = state;
+      if (password.length > 5 && email.length > 4) {
+        
+      } else {
+
+        alert("Please fill the correct value");
+      }
+    } catch (err) {
+
+    }
+  }
 
   return (
     <ImageBackground source={require('../../res/login_background_image.png')} style={{ backgroundColor: 'black', height: '100%' }}>
@@ -17,20 +36,28 @@ export default ({ navigation: { navigate } }) => {
         {/*Input fields*/}
         <Text style={styles.fieldText}>Email address</Text>
         <View style={styles.field}>
-          <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }} />
+          <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={email => {
+              setState({ ...state, email });
+            }}
+          />
         </View>
 
         <Text style={styles.fieldText}>Password</Text>
         <View style={styles.field}>
-          <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }} />
+          <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }}
+            onChangeText={password => {
+              setState({ ...state, password });
+            }}
+          />
         </View>
 
         {/*Buttons*/}
-        <View style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onLogin}>
           <Text style={{ color: 'white' }}>
             Login
           </Text>
-        </View>
+        </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
           <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
