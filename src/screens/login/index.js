@@ -1,6 +1,9 @@
 import React, { useReducer } from 'react';
 import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
+import { useDispatch } from "react-redux";
+import { signin } from "../../store/actions/UserSlice";
+
 export default ({ navigation: { navigate } }) => {
 
 
@@ -8,11 +11,25 @@ export default ({ navigation: { navigate } }) => {
     password: "", email: ""
   });
 
+  const dispatch = useDispatch();
+
   const onLogin = async () => {
     try {
       const { password, email } = state;
       if (password.length > 5 && email.length > 4) {
-        
+
+        const { payload } = await dispatch(signin({
+          grant_type: "password",
+          username, password, email
+        }));
+
+        if (payload && payload.access_token && payload.expires_in) {   
+          navigate('Home');
+        } else {
+          
+          alert("Something went wrong, please try again!");
+        }
+
       } else {
 
         alert("Please fill the correct value");
