@@ -43,6 +43,8 @@ const TabNav = () => {
     );
 }
 
+import * as SecureStore from 'expo-secure-store';
+
 let _isLoggedIn = 0;
 export default () => {
 
@@ -50,6 +52,11 @@ export default () => {
     const dispatch = useDispatch();
 
     _isLoggedIn = isLoggedIn;
+
+
+    useEffect(()=> {
+        // SecureStore.deleteItemAsync("credential");
+      }, []);
 
     useEffect(() => {
         const asyncFunc = async ()=> {

@@ -9,25 +9,29 @@ export const signup = createAsyncThunk("user/signup",
     async (params, thunkAPI) => {
         try {
 
-            const { data } = await formRequest('auth/register/', {
+            const response = await formRequest('auth/register/', {
                 method: "POST", data: qs.stringify(params)
             });
+            
+            const data = response.data;
 
             if(data && data.access_token && data.expires_in){
 
-                thunkAPI.dispatch(setUser(params));
+                // thunkAPI.dispatch(setUser(params));
 
                 saveSecure("credential", {
                     ...data, ...params
                 });
 
-                return data;
+                return { ...data, ...params };
             }
 
+            console.log("response", response);
             return thunkAPI.rejectWithValue(qs.stringify(data));
 
         } catch (err) {
 
+            console.log("response err", JSON.stringify(err));
             return thunkAPI.rejectWithValue(err.message);
         }
     }

@@ -1,9 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { signup } from "../../store/actions/UserSlice";
+import { signup, getUser } from "../../store/actions/UserSlice";
+
 
 export default ({ navigation: { navigate } }) => {
 
@@ -13,6 +14,8 @@ export default ({ navigation: { navigate } }) => {
   });
 
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  console.log("USER => ", user);
 
   const createAccount = async () => {
     try {
