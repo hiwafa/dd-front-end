@@ -4,47 +4,44 @@ import { ImageBackground, StyleSheet, Text, View, Image, TextInput } from 'react
 export default ({ navigation: { navigate } }) => {
 
   return (
-    <View style={{ backgroundColor: 'black', height: '100%' }}>
-      <ImageBackground source={require('../../res/login_background_image.png')} style={{ height: '100%' }}>
-        <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} />
-        {/*BACKGROUND VIEW*/}
+    <ImageBackground source={require('../../res/login_background_image.png')} style={{ backgroundColor: 'black', height: '100%' }}>
+      <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} />
+      {/*BACKGROUND VIEW*/}
 
-        <View style={styles.loginContainer}>
-          {/*LOGIN VIEW*/}
+      <View style={styles.loginContainer}>
+        {/*LOGIN VIEW*/}
 
-          <Text style={styles.header}>Welcome,</Text>
-          <Text style={styles.header}>Log in here</Text>
+        <Text style={styles.header}>Welcome,</Text>
+        <Text style={styles.header}>Log in here</Text>
 
-          {/*Input fields*/}
-          <Text style={styles.fieldText}>Email address</Text>
-          <View style={styles.field}>
-            <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }} />
-          </View>
-
-          <Text style={styles.fieldText}>Password</Text>
-          <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }} />
-          </View>
-
-          {/*Buttons*/}
-          <View style={styles.button}>
-            <Text style={{ color: 'white' }}>
-              Login
-            </Text>
-          </View>
-
-          <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
-            <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
-              Forgot password?
-            </Text>
-            <Text onPress={() => navigate('Register')} style={styles.linkRight}>
-              Create account
-            </Text>
-          </View>
+        {/*Input fields*/}
+        <Text style={styles.fieldText}>Email address</Text>
+        <View style={styles.field}>
+          <TextInput placeholder='Enter your email' style={{ paddingHorizontal: 10, width: '100%' }} />
         </View>
 
-      </ImageBackground>
-    </View>
+        <Text style={styles.fieldText}>Password</Text>
+        <View style={styles.field}>
+          <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }} />
+        </View>
+
+        {/*Buttons*/}
+        <View style={styles.button}>
+          <Text style={{ color: 'white' }}>
+            Login
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
+          <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
+            Forgot password?
+          </Text>
+          <Text onPress={() => navigate('Register')} style={styles.linkRight}>
+            Create account
+          </Text>
+        </View>
+      </View>
+    </ImageBackground>
   )
 }
 
