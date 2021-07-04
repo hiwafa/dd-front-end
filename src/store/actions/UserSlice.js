@@ -63,7 +63,13 @@ export const loadCredential = createAsyncThunk("user/loadCredential",
     async (params, thunkAPI) => {
         try {
 
-            return (await getValueFor("credential"));
+            const result = (await getValueFor("credential"));
+
+            if(result && result.access_token && result.expires_in){
+                return result;
+            }
+
+            return thunkAPI.rejectWithValue("No credential exist!");
 
         } catch (err) {
 
@@ -143,5 +149,6 @@ const userSlice = createSlice({
 
 export const { setUser } = userSlice.actions;
 export const getUser = (state) => state.user;
+export const isLoggedIn = ({user: {status}}) => status === "fulfilled";
 
 export default userSlice.reducer;

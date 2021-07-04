@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserImage from './components/UserImage';
 
 import Home from "./screens/home";
@@ -15,7 +15,7 @@ import ChatBox from "./screens/chatbox";
 import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
-import { loadCredential } from "./store/actions/UserSlice";
+import { loadCredential, isLoggedIn } from "./store/actions/UserSlice";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -48,10 +48,11 @@ import * as SecureStore from 'expo-secure-store';
 let _isLoggedIn = 0;
 export default () => {
 
-    const [isLoggedIn, setLoggedIn] = useState(0);
+    const [state, setState] = useState(0);
+    const isSingIn = useSelector(isLoggedIn);
     const dispatch = useDispatch();
 
-    _isLoggedIn = isLoggedIn;
+    _isLoggedIn = state;
 
 
     useEffect(()=> {
@@ -62,9 +63,9 @@ export default () => {
         const asyncFunc = async ()=> {
             const { payload } = await dispatch(loadCredential(null));
             if(payload && payload.access_token && payload.expires_in) {
-                setLoggedIn(1);
+                setState(1);
             }else{
-                setLoggedIn(2);
+                setState(2);
             }
         };
         asyncFunc();
@@ -72,8 +73,9 @@ export default () => {
 
 
     const loadScreens = () => {
+
         if (_isLoggedIn === 0) return <SplashScreen />;
-        if (_isLoggedIn === 1) return (
+        if (_isLoggedIn === 1 || isSingIn) return (
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false

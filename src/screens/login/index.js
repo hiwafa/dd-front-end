@@ -24,7 +24,7 @@ export default ({ navigation: { navigate } }) => {
 
         if (payload && payload.access_token && payload.expires_in) { 
           
-          navigate('TabNav');
+          console.log("pay loading login: ", payload);
 
         } else {
           alert("Something went wrong, please try again!");
