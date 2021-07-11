@@ -15,8 +15,6 @@ export default ({ navigation: { navigate } }) => {
 
   const chats = useSelector(getChats);
 
-  console.log("chats", chats);
-
   const ItemSeprator = () => <View style={{
     height: 15,
     width: windowWidth - 40,

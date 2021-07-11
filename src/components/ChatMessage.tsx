@@ -3,11 +3,8 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Message } from "../../types";
 import moment from "moment";
 
-export type ChatMessageProps = {
-  messages: Message;
-}
 
-const ChatMessage = (props: ChatMessageProps) => {
+const ChatMessage = ({}) => {
   const {message} = props;
 
   const myMessage = () => {

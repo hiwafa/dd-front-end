@@ -31,7 +31,7 @@ const ChatListItem = ({ chatRoom }) => {
     <TouchableWithoutFeedback onPress={onClick}>
       <View style={styles.container}>
         <View style={styles.leftContainer}>
-          <Image source={{ uri: "" }} style={styles.avatar}/>
+          {/* <Image source={{ uri: "" }} style={styles.avatar}/> */}
 
           <View style={styles.midContainer}>
             <Text style={styles.username}>{getAllName()}</Text>
