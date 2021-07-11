@@ -3,8 +3,10 @@ import { request } from "./../../api";
 
 
 export const fetchPeople = createAsyncThunk("people/fetchPeople",
-    async ({token}, thunkAPI) => {
+    async (token, thunkAPI) => {
         try {
+
+            console.log("token ", token);
 
             const headers = {
                 "Content-Type": "application/x-www-form-urlencoded",
