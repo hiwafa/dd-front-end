@@ -5,12 +5,10 @@ import moment from "moment";
 
 
 
-const ChatMessage = ({message}) => {
+const ChatMessage = ({message, userid}) => {
 
 
-  const myMessage = () => {
-    return false;
-  };
+  const myMessage = () => message.sender === userid;
 
   return (
     <View style={[

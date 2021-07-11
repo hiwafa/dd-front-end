@@ -85,9 +85,9 @@ const userSlice = createSlice({
 
     name: "user",
     initialState: {
+        id: null,
         email: null,
         expires_in: 0,
-        userid: null,
         username: null,
         password: null,
         status: "idle",

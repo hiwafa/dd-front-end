@@ -25,9 +25,9 @@ export default function (props) {
 export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
 
   const dispatch = useDispatch();
-  const { access_token } = useSelector(getUser);
+  const { access_token, id } = useSelector(getUser);
   const messages = useSelector(getMessages);
-
+  
   const viewHeight = windowHeight - headerHeight;
 
   useEffect(()=> {
@@ -52,7 +52,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
         keyExtractor={(item) => item.id}
         style={{ height: viewHeight - headerHeight }}
         data={ messages[chatId] ? messages[chatId] : [] }
-        renderItem={({ item }) => <ChatMessage message={item} />}
+        renderItem={({ item }) => <ChatMessage userid={id} message={item} />}
       />
 
       <KeyboardAvoidingView

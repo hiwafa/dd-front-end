@@ -33,7 +33,7 @@ export default ({ navigation: { navigate } }) => {
             data={chats}
             ItemSeparatorComponent={ItemSeprator}
             renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => `${item.id}`}
           />
         </View>
       </View>
