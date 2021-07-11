@@ -1,24 +1,45 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { useDispatch } from "react-redux";
 import { setMessage } from '../store/actions/ChatsSlice';
+import { useDispatch } from "react-redux";
+import { request } from '../api';
+const qs = require('qs');
 
-const InputTextBox = ({chatId, userid}) => {
+const InputTextBox = ({ chatId, userid, token }) => {
 
   const dispatch = useDispatch();
   const [text, setText] = useState("");
 
-  const onSendPress = () => {
-    dispatch(setMessage({
-      chatId,
-      newMessage: {
-        content: text, sender: userid,
-        timestamp: (new Date()).getTime(),
-        id: Math.round(Math.random() * 9999999)
-      }
-    }));
+  const onSendPress = async () => {
+    try {
+
+      dispatch(setMessage({
+        chatId,
+        newMessage: {
+          content: text, sender: userid,
+          timestamp: (new Date()).getTime(),
+          id: Math.round(Math.random() * 9999999)
+        }
+      }));
+
+
+      const headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": `Bearer ${token}`
+      };
+
+      await request(`chat/message/`, {
+        method: "POST", headers, data: qs.stringify({
+          chat_id: chatId, content: text
+        })
+      });
+
+    } catch (err) {
+      alert(err.message)
+    }
+
     setText("");
   }
 
@@ -26,7 +47,7 @@ const InputTextBox = ({chatId, userid}) => {
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={styles.micContainer}>
-          <MaterialCommunityIcons name="microphone" size={30} color="#2037A5"/>
+          <MaterialCommunityIcons name="microphone" size={30} color="#2037A5" />
         </View>
         <TextInput
           placeholder={"Type a new message..."}
@@ -35,7 +56,7 @@ const InputTextBox = ({chatId, userid}) => {
           value={text}
           onChangeText={text => setText(text)}
         />
-        <View style={{width: 100, marginLeft: 10}}>
+        <View style={{ width: 100, marginLeft: 10 }}>
           <TouchableOpacity style={styles.sendButton} onPress={onSendPress}>
             <Text style={styles.sendText}>Send</Text>
           </TouchableOpacity>
@@ -46,7 +67,7 @@ const InputTextBox = ({chatId, userid}) => {
   );
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: "#fff",
