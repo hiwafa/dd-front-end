@@ -31,7 +31,8 @@ export const fetchPeople = createAsyncThunk("people/fetchPeople",
 const peopleSlice = createSlice({
     name: "people",
     initialState: {
-
+        status: "idle",
+        chats: []
     },
     reducers: {
         setPeople: (state, { payload }) => {
@@ -40,13 +41,16 @@ const peopleSlice = createSlice({
     },
     extraReducers: {
         [fetchPeople.pending]: (state, action) => {
-            console.log("people pending ", action.payload);
+           state.status = "pending";
         },
         [fetchPeople.rejected]: (state, action) => {
-            console.log("people rejected ", action.payload);
+            state.status = "rejected";
         },
         [fetchPeople.fulfilled]: (state, {payload}) => {
-            console.log("people fulfilled ", payload);
+            return {
+                ...state, chats: payload,
+                status: "fulfilled"
+            };
         },
     }
 });
