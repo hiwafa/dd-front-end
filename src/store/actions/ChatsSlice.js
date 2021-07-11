@@ -92,13 +92,12 @@ const chatsSlice = createSlice({
             state.messageStatus = "rejected";
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
-            console.log("...state.messages[id]", id);
 
             if (state.messages[id] === undefined) {
                 state.messages = {
                     ...state.messages, [id]: msgs
                 };
-            }else {
+            } else {
                 state.messages = {
                     ...state.messages, [id]: [
                         ...(state.messages[id]),
@@ -107,10 +106,7 @@ const chatsSlice = createSlice({
                 };
             }
 
-            //  state.messages = {
-            //      ...state.messages, [id]: msgs
-            //  };
-            //  state.messageStatus = "fulfilled";
+            state.messageStatus = "fulfilled";
         },
     }
 });

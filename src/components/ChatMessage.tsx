@@ -26,8 +26,8 @@ const ChatMessage = ({message, userid}) => {
             borderTopLeftRadius: myMessage() ? 10: 0,
         }
       ]}>
-        <Text style={styles.content}>{message.text}</Text>
-        <Text style={styles.time}>{moment(new Date(message.createdAt)).fromNow()}</Text>
+        <Text style={styles.content}>{message.content}</Text>
+        <Text style={styles.time}>{moment(new Date(message.timestamp)).fromNow()}</Text>
       </View>
     </View>
   );

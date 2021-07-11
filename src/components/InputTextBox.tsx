@@ -14,9 +14,9 @@ const InputTextBox = ({chatId, userid}) => {
     dispatch(setMessage({
       chatId,
       newMessage: {
-        text, createdAt: (new Date()).getTime(),
-        id: Math.round(Math.random() * 9999999),
-        sender: userid
+        content: text, sender: userid,
+        timestamp: (new Date()).getTime(),
+        id: Math.round(Math.random() * 9999999)
       }
     }));
   }
