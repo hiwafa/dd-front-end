@@ -9,7 +9,6 @@ export default function(props) {
 export class UserImage extends React.Component{
   render() {
     const props = this.props;
-    console.log(props.userImage);
     return (
       <View style={{flexDirection: 'row'}}>
         <Image

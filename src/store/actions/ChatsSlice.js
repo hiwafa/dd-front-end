@@ -39,7 +39,7 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
                 method: "GET", headers
             });
 
-            if(data && Array.isArray(data) && data.length > 0) return {
+            if(data && Array.isArray(data)) return {
                 id: chatId, msgs: data
             };
 
@@ -100,5 +100,6 @@ const chatsSlice = createSlice({
 
 export const { setMessages } = chatsSlice.actions;
 export const getChats = (state ) => state.chats.items;
+export const getMessages = (state ) => state.chats.messages;
 
 export default chatsSlice.reducer;

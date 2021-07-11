@@ -6,7 +6,6 @@ const InputTextBox = () => {
   const [message, setMessage] = useState();
 
   const onSendPress = () => {
-    console.log('Sending:' + message)
     setMessage('');
   }
 

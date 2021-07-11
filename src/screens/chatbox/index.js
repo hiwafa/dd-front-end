@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Text, FlatList, View, StyleSheet, Image, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import chats from '../../../data/chats';
@@ -13,29 +13,28 @@ const windowHeight = Dimensions.get('window').height;
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMessages } from '../../store/actions/ChatsSlice';
 import { getUser } from '../../store/actions/UserSlice';
-
+import { getMessages } from '../../store/actions/ChatsSlice';
 
 export default function (props) {
-  const route = useRoute();
+
   const headerHeight = useHeaderHeight();
-  return <ChatBox {...props} route={route} headerHeight={headerHeight} />;
+  return <ChatBox {...props} headerHeight={headerHeight} />;
 }
 
 
-export const ChatBox = ({headerHeight, route}) => {
+export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
 
   const dispatch = useDispatch();
-  const { token } = useSelector(getUser);
+  const { access_token } = useSelector(getUser);
+  const messages = useSelector(getMessages);
 
   const viewHeight = windowHeight - headerHeight;
-  const route = route;
-
 
   useEffect(()=> {
 
     const interval = setInterval(async ()=> {
 
-      dispatch(fetchMessages({token, chatId: chatRoom.id}));
+      dispatch(fetchMessages({token: access_token, chatId}));
 
     }, 1000);
 
@@ -49,10 +48,9 @@ export const ChatBox = ({headerHeight, route}) => {
     <View style={[styles.background, { height: viewHeight }]}>
 
       <FlatList
-        ref={(ref) => this.scrollView = ref}
-        onContentSizeChange={() => { this.scrollView.scrollToEnd({ animated: true }) }}
+        inverted={true}
+        data={ messages[chatId] ? messages[chatId] : [] }
         style={{ height: viewHeight - headerHeight }}
-        data={chats.messages}
         renderItem={({ item }) => <ChatMessage message={item} />}
       />
 
