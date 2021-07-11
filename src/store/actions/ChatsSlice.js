@@ -6,8 +6,6 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
     async (token, thunkAPI) => {
         try {
 
-            console.log("token ", token);
-
             const headers = {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": `Bearer ${token}`
@@ -32,7 +30,7 @@ const chatsSlice = createSlice({
     name: "chats",
     initialState: {
         status: "idle",
-        chats: []
+        items: []
     },
     reducers: {
         setChats: (state, { payload }) => {
@@ -48,7 +46,7 @@ const chatsSlice = createSlice({
         },
         [fetchChats.fulfilled]: (state, {payload}) => {
             return {
-                ...state, chats: payload,
+                ...state, items: payload,
                 status: "fulfilled"
             };
         },
@@ -57,6 +55,6 @@ const chatsSlice = createSlice({
 
 
 export const { setChats } = chatsSlice.actions;
-export const getChats = (state ) => state.chats;
+export const getChats = (state ) => state.chats.items;
 
 export default chatsSlice.reducer;
