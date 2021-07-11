@@ -9,3 +9,8 @@ export const formRequest = axios.create({
         "Authorization": `Basic ${DD_OAUTH_API_KEY}`
     },
 });
+
+export const request = axios.create({
+    baseURL: "https://api.deepdialog.se/",
+    timeout: 7000
+});
