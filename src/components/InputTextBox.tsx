@@ -36,6 +36,8 @@ const InputTextBox = () => {
 const styles = StyleSheet.create ({
   container: {
     flexDirection: 'row',
+    backgroundColor: "#fff",
+    paddingBottom: 10
   },
   mainContainer: {
     alignSelf: 'center',

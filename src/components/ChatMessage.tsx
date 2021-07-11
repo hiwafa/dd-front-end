@@ -4,11 +4,12 @@ import { Message } from "../../types";
 import moment from "moment";
 
 
-const ChatMessage = ({}) => {
-  const {message} = props;
+
+const ChatMessage = ({message}) => {
+
 
   const myMessage = () => {
-    return message.user.id == 'u1';
+    return false;
   };
 
   return (
@@ -27,8 +28,8 @@ const ChatMessage = ({}) => {
             borderTopLeftRadius: myMessage() ? 10: 0,
         }
       ]}>
-        <Text style={styles.content}>{message.content}</Text>
-        <Text style={styles.time}>{moment(message.createdAt).fromNow()}</Text>
+        <Text style={styles.content}>{message.text}</Text>
+        <Text style={styles.time}>{moment(new Date(message.createdAt)).fromNow()}</Text>
       </View>
     </View>
   );
