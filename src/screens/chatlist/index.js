@@ -9,41 +9,39 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default class ChatList extends React.Component{
-    ItemSeprator = () => <View style={{
-      height: 15,
-      width: windowWidth -40,
-      backgroundColor: "#fbf2e1",
-    }} />
-    render(){
-      const {navigate} = this.props.navigation
-      return(
-        <View style={{backgroundColor: '#fbf2e1', width: windowWidth}}>
-          <View style={styles.topContainer}>
-            <Text style={styles.title}>Recent Conversations</Text>
-          </View>
-          <View style={styles.mainContainer}>
-            <ScrollView styles={{width: '100%'}}>
-              <View style={styles.container}>
-                <FlatList
-                  scrollEnabled={true}
-                  data={rooms}
-                  ItemSeparatorComponent={this.ItemSeprator}
-                  renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
-                  keyExtractor={(item) => item.id}
-                />
-              </View>
-            </ScrollView>
+export default class ChatList extends React.Component {
+  ItemSeprator = () => <View style={{
+    height: 15,
+    width: windowWidth - 40,
+    backgroundColor: "#fbf2e1",
+  }} />
+  render() {
+    const { navigate } = this.props.navigation
+    return (
+      <View style={{ backgroundColor: '#fbf2e1', width: windowWidth }}>
+        <View style={styles.topContainer}>
+          <Text style={styles.title}>Recent Conversations</Text>
+        </View>
+        <View style={styles.mainContainer}>
+          <View style={styles.container}>
+            <FlatList
+              scrollEnabled={true}
+              data={rooms}
+              ItemSeparatorComponent={this.ItemSeprator}
+              renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
+              keyExtractor={(item) => item.id}
+            />
           </View>
         </View>
-      );
-    }
+      </View>
+    );
+  }
 }
 
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   mainContainer: {
-    height: windowHeight-125,
+    height: windowHeight - 125,
     width: '100%',
     backgroundColor: '#fbf2e1',
     paddingBottom: 10,
