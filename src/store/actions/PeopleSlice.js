@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { formRequest, request } from "./../../api";
+import { request } from "./../../api";
 
 
-const fetchPeople = createAsyncThunk("people/fetchPeople",
+export const fetchPeople = createAsyncThunk("people/fetchPeople",
     async ({token}, thunkAPI) => {
         try {
-            
+
             const headers = {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": `Bearer ${token}`
@@ -38,13 +38,13 @@ const peopleSlice = createSlice({
     },
     extraReducers: {
         [fetchPeople.pending]: (state, action) => {
-            
+            console.log("people pending ", action.payload);
         },
         [fetchPeople.rejected]: (state, action) => {
-            
+            console.log("people rejected ", action.payload);
         },
         [fetchPeople.fulfilled]: (state, {payload}) => {
-            console.log("people payload ", payload);
+            console.log("people fulfilled ", payload);
         },
     }
 });

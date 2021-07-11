@@ -16,6 +16,7 @@ import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
 import { loadCredential, isLoggedIn } from "./store/actions/UserSlice";
+import { fetchPeople } from "./store/actions/PeopleSlice";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -51,8 +52,12 @@ export default () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+
         // SecureStore.deleteItemAsync("credential");
-        dispatch(loadCredential(null));
+        dispatch(loadCredential(null)).then(({payload}) => {
+            if(payload.access_token) dispatch(fetchPeople(payload.access_token));
+        }).then( _=> {});
+
     }, []);
 
     const loadScreens = () => {
