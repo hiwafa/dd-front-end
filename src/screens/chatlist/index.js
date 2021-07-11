@@ -10,11 +10,13 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default class ChatList extends React.Component {
+
   ItemSeprator = () => <View style={{
     height: 15,
     width: windowWidth - 40,
     backgroundColor: "#fbf2e1",
   }} />
+
   render() {
     const { navigate } = this.props.navigation
     return (
@@ -55,13 +57,14 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     backgroundColor: '#fbf2e1',
-    height: 50,
-    marginLeft: 20,
-    marginTop: 25,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
+    marginTop: 30
   },
   listItem: {
     paddingBottom: 20,
