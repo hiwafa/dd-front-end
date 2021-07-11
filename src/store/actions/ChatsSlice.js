@@ -93,18 +93,24 @@ const chatsSlice = createSlice({
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
 
-            if (state.messages[id] === undefined) {
-                state.messages = {
-                    ...state.messages, [id]: msgs
-                };
-            } else {
-                state.messages = {
-                    ...state.messages, [id]: [
-                        ...(state.messages[id]),
-                        ...msgs
-                    ]
-                };
-            }
+            console.log("messages: ", msgs);
+            
+            state.messages = {
+                ...state.messages, [id]: msgs
+            };
+
+            // if (state.messages[id] === undefined) {
+            //     state.messages = {
+            //         ...state.messages, [id]: msgs
+            //     };
+            // } else {
+            //     state.messages = {
+            //         ...state.messages, [id]: [
+            //             ...(state.messages[id]),
+            //             ...msgs
+            //         ]
+            //     };
+            // }
 
             state.messageStatus = "fulfilled";
         },
