@@ -49,8 +49,9 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
 
       <FlatList
         inverted={true}
-        data={ messages[chatId] ? messages[chatId] : [] }
+        keyExtractor={(item) => item.id}
         style={{ height: viewHeight - headerHeight }}
+        data={ messages[chatId] ? messages[chatId] : [] }
         renderItem={({ item }) => <ChatMessage message={item} />}
       />
 
@@ -59,7 +60,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
         behavior="position">
         <InputTextBox
           style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
-          behavior="position" />
+          behavior="position" chatId={chatId} />
       </KeyboardAvoidingView>
     </View>
   );

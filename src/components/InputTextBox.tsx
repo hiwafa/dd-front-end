@@ -2,11 +2,22 @@ import React, {useState} from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-const InputTextBox = () => {
-  const [message, setMessage] = useState();
+import { useDispatch } from "react-redux";
+import { setMessage } from '../store/actions/ChatsSlice';
+
+const InputTextBox = ({chatId}) => {
+
+  const dispatch = useDispatch();
+  const [text, setText] = useState("");
 
   const onSendPress = () => {
-    setMessage('');
+    dispatch(setMessage({
+      chatId,
+      newMessage: {
+        text, createdAt: (new Date()).getTime(),
+        id: Math.round(Math.random() * 9999999)
+      }
+    }));
   }
 
   return (
@@ -19,8 +30,8 @@ const InputTextBox = () => {
           placeholder={"Type a new message..."}
           style={styles.textInputBox}
           multiline
-          value={message}
-          onChangeText={setMessage}
+          value={text}
+          onChangeText={text => setText(text)}
         />
         <View style={{width: 100, marginLeft: 10}}>
           <TouchableOpacity style={styles.sendButton} onPress={onSendPress}>

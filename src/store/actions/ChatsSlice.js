@@ -61,9 +61,12 @@ const chatsSlice = createSlice({
         messageStatus: "idle"
     },
     reducers: {
-        setMessages: (state, { payload }) => {
-
-        }
+        setMessage: (state, { payload: {chatId, newMessage} }) => {
+            state.messages[chatId] = [
+                newMessage,
+                ...state.messages[chatId]
+            ];
+        }   
     },
     extraReducers: {
 
@@ -98,7 +101,7 @@ const chatsSlice = createSlice({
 });
 
 
-export const { setMessages } = chatsSlice.actions;
+export const { setMessage } = chatsSlice.actions;
 export const getChats = (state ) => state.chats.items;
 export const getMessages = (state ) => state.chats.messages;
 
