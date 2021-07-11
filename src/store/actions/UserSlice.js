@@ -24,7 +24,7 @@ export const signup = createAsyncThunk("user/signup",
                 return { ...data, ...params, loginStatus: "loaded" };
             }
 
-            return thunkAPI.rejectWithValue(qs.stringify(data));
+            return thunkAPI.rejectWithValue("No Data for SignUp");
 
         } catch (err) {
 
@@ -85,6 +85,7 @@ const userSlice = createSlice({
 
     name: "user",
     initialState: {
+        id: null,
         email: null,
         expires_in: 0,
         username: null,

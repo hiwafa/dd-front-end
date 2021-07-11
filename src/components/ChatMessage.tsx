@@ -3,16 +3,12 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Message } from "../../types";
 import moment from "moment";
 
-export type ChatMessageProps = {
-  messages: Message;
-}
 
-const ChatMessage = (props: ChatMessageProps) => {
-  const {message} = props;
 
-  const myMessage = () => {
-    return message.user.id == 'u1';
-  };
+const ChatMessage = ({message, userid}) => {
+
+
+  const myMessage = () => message.sender === userid;
 
   return (
     <View style={[
@@ -31,7 +27,7 @@ const ChatMessage = (props: ChatMessageProps) => {
         }
       ]}>
         <Text style={styles.content}>{message.content}</Text>
-        <Text style={styles.time}>{moment(message.createdAt).fromNow()}</Text>
+        <Text style={styles.time}>{moment(new Date(message.timestamp)).fromNow()}</Text>
       </View>
     </View>
   );

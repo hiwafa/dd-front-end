@@ -3,47 +3,48 @@ import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView, Dimensi
 import { chatRoom } from "../../../types";
 import rooms from '../../../data/rooms';
 import ChatListItem from "../../components/ChatListItem";
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
+import { useSelector } from "react-redux";
+import { getChats } from '../../store/actions/ChatsSlice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default class ChatList extends React.Component{
-    ItemSeprator = () => <View style={{
-      height: 15,
-      width: windowWidth -40,
-      backgroundColor: "#fbf2e1",
-    }} />
-    render(){
-      const {navigate} = this.props.navigation
-      return(
-        <View style={{backgroundColor: '#fbf2e1', width: windowWidth}}>
-          <View style={styles.topContainer}>
-            <Text style={styles.title}>Recent Conversations</Text>
-          </View>
-          <View style={styles.mainContainer}>
-            <ScrollView styles={{width: '100%'}}>
-              <View style={styles.container}>
-                <FlatList
-                  scrollEnabled={true}
-                  data={rooms}
-                  ItemSeparatorComponent={this.ItemSeprator}
-                  renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
-                  keyExtractor={(item) => item.id}
-                />
-              </View>
-            </ScrollView>
-          </View>
+
+export default ({ navigation: { navigate } }) => {
+
+  const chats = useSelector(getChats);
+
+  const ItemSeprator = () => <View style={{
+    height: 15,
+    width: windowWidth - 40,
+    backgroundColor: "#fbf2e1",
+  }} />
+
+  return (
+    <View style={{ backgroundColor: '#fbf2e1', width: windowWidth }}>
+      <View style={styles.topContainer}>
+        <Text style={styles.title}>Recent Conversations</Text>
+      </View>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <FlatList
+            scrollEnabled={true}
+            data={chats}
+            ItemSeparatorComponent={ItemSeprator}
+            renderItem={({ item }) => <ChatListItem style={styles.listItem} chatRoom={item} />}
+            keyExtractor={(item) => `${item.id}`}
+          />
         </View>
-      );
-    }
+      </View>
+    </View>
+  );
 }
 
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   mainContainer: {
-    height: windowHeight-125,
+    height: windowHeight - 125,
     width: '100%',
     backgroundColor: '#fbf2e1',
     paddingBottom: 10,
@@ -57,13 +58,14 @@ const styles = StyleSheet.create ({
   },
   topContainer: {
     backgroundColor: '#fbf2e1',
-    height: 50,
-    marginLeft: 20,
-    marginTop: 25,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
+    marginTop: 30
   },
   listItem: {
     paddingBottom: 20,

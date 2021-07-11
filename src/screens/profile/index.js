@@ -29,8 +29,6 @@ export default ({ navigation }) => {
             quality: 1,
         });
 
-        console.log(result);
-
         if (!result.cancelled) {
             // add the image
         }
