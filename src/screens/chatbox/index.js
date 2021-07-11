@@ -17,6 +17,8 @@ export default function (props) {
 }
 
 
+
+
 export class ChatBox extends React.Component {
   render() {
     const headerHeight = this.props.headerHeight;

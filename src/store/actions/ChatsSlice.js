@@ -26,12 +26,39 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
     }
 );
 
+export const fetchMessages = createAsyncThunk("chats/fetchMessages",
+    async ({token, chatId}, thunkAPI) => {
+        try {
+
+            const headers = {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": `Bearer ${token}`
+            };
+
+            const { data } = await request(`chat/message/${chatId}/`, {
+                method: "GET", headers
+            });
+
+            if(data && Array.isArray(data) && data.length > 0) return {
+                id: chatId, msgs: data
+            };
+
+            return thunkAPI.rejectWithValue("No Data for messages");
+
+        } catch (err) {
+
+            return thunkAPI.rejectWithValue(err.message);
+        }
+    }
+);
+
 const chatsSlice = createSlice({
     name: "chats",
     initialState: {
-        status: "idle",
         items: [],
-        messages: {}
+        messages: {},
+        status: "idle",
+        messageStatus: "idle"
     },
     reducers: {
         setMessages: (state, { payload }) => {
@@ -39,6 +66,8 @@ const chatsSlice = createSlice({
         }
     },
     extraReducers: {
+
+        /* fetching chats */
         [fetchChats.pending]: (state, action) => {
            state.status = "pending";
         },
@@ -51,6 +80,20 @@ const chatsSlice = createSlice({
                 status: "fulfilled"
             };
         },
+
+        /* fetching messages */
+        [fetchMessages.pending]: (state, action) => {
+            state.messageStatus = "pending";
+         },
+         [fetchMessages.rejected]: (state, action) => {
+             state.messageStatus = "rejected";
+         },
+         [fetchMessages.fulfilled]: (state, {payload: {id, msgs}}) => {
+             state.messages = {
+                 ...state.messages, [id]: msgs
+             };
+             state.messageStatus = "fulfilled";
+         },
     }
 });
 

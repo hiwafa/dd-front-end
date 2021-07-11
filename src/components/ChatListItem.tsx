@@ -23,7 +23,8 @@ const ChatListItem = ({ chatRoom }) => {
 
   const onClick = () => {
     navigation.navigate('ChatBox', {
-      name: getAllName(), userImage: ""
+      chatId: chatRoom.id,
+      name: getAllName()
     })
   };
 
