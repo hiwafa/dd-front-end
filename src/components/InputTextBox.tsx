@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useDispatch } from "react-redux";
 import { setMessage } from '../store/actions/ChatsSlice';
 
-const InputTextBox = ({chatId}) => {
+const InputTextBox = ({chatId, userid}) => {
 
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -15,7 +15,8 @@ const InputTextBox = ({chatId}) => {
       chatId,
       newMessage: {
         text, createdAt: (new Date()).getTime(),
-        id: Math.round(Math.random() * 9999999)
+        id: Math.round(Math.random() * 9999999),
+        sender: userid
       }
     }));
   }

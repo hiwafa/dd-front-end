@@ -58,9 +58,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
       <KeyboardAvoidingView
         style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
         behavior="position">
-        <InputTextBox
-          style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
-          behavior="position" chatId={chatId} />
+        <InputTextBox chatId={chatId} userid={id}/>
       </KeyboardAvoidingView>
     </View>
   );
