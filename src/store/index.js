@@ -2,11 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 
 import userReducer from "./actions/UserSlice";
-import peopleReducer from "./actions/PeopleSlice";
+import chatsReducer from "./actions/ChatsSlice";
 
 const allReducers = combineReducers({
     user: userReducer,
-    people: peopleReducer
+    chats: chatsReducer
 });
 
 export default configureStore({

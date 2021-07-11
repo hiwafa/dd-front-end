@@ -16,7 +16,7 @@ import ChatList from "./screens/chatlist";
 import Settings from "./screens/settings";
 
 import { loadCredential, isLoggedIn } from "./store/actions/UserSlice";
-import { fetchPeople } from "./store/actions/PeopleSlice";
+import { fetchChats } from "./store/actions/ChatsSlice";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +55,7 @@ export default () => {
 
         // SecureStore.deleteItemAsync("credential");
         dispatch(loadCredential(null)).then(({payload}) => {
-            if(payload.access_token) dispatch(fetchPeople(payload.access_token));
+            if(payload.access_token) dispatch(fetchChats(payload.access_token));
         }).then( _=> {});
 
     }, []);

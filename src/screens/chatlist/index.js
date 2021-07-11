@@ -3,13 +3,17 @@ import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView, Dimensi
 import { chatRoom } from "../../../types";
 import rooms from '../../../data/rooms';
 import ChatListItem from "../../components/ChatListItem";
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
+import { useSelector } from "react-redux";
+import { getChats } from '../../store/actions/ChatsSlice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
 export default ({ navigation: { navigate } }) => {
+
+  const chats = useSelector(getChats);
 
   const ItemSeprator = () => <View style={{
     height: 15,

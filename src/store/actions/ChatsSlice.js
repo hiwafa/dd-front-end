@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { request } from "./../../api";
+import { request } from "../../api";
 
 
-export const fetchPeople = createAsyncThunk("people/fetchPeople",
+export const fetchChats = createAsyncThunk("chats/fetchChats",
     async (token, thunkAPI) => {
         try {
 
@@ -17,9 +17,9 @@ export const fetchPeople = createAsyncThunk("people/fetchPeople",
                 method: "GET", headers
             });
 
-            if(data) return data;
+            if(data && Array.isArray(data) && data.length > 0) return data;
 
-            return thunkAPI.rejectWithValue("No Data for people");
+            return thunkAPI.rejectWithValue("No Data for chats");
 
         } catch (err) {
 
@@ -28,25 +28,25 @@ export const fetchPeople = createAsyncThunk("people/fetchPeople",
     }
 );
 
-const peopleSlice = createSlice({
-    name: "people",
+const chatsSlice = createSlice({
+    name: "chats",
     initialState: {
         status: "idle",
         chats: []
     },
     reducers: {
-        setPeople: (state, { payload }) => {
+        setChats: (state, { payload }) => {
 
         }
     },
     extraReducers: {
-        [fetchPeople.pending]: (state, action) => {
+        [fetchChats.pending]: (state, action) => {
            state.status = "pending";
         },
-        [fetchPeople.rejected]: (state, action) => {
+        [fetchChats.rejected]: (state, action) => {
             state.status = "rejected";
         },
-        [fetchPeople.fulfilled]: (state, {payload}) => {
+        [fetchChats.fulfilled]: (state, {payload}) => {
             return {
                 ...state, chats: payload,
                 status: "fulfilled"
@@ -56,6 +56,7 @@ const peopleSlice = createSlice({
 });
 
 
-const { setPeople } = peopleSlice.actions;
+export const { setChats } = chatsSlice.actions;
+export const getChats = (state ) => state.chats;
 
-export default peopleSlice.reducer;
+export default chatsSlice.reducer;
