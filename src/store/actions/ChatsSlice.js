@@ -15,7 +15,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 method: "GET", headers
             });
 
-            if(data && Array.isArray(data) && data.length > 0) return data;
+            if (data && Array.isArray(data) && data.length > 0) return data;
 
             return thunkAPI.rejectWithValue("No Data for chats");
 
@@ -27,7 +27,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
 );
 
 export const fetchMessages = createAsyncThunk("chats/fetchMessages",
-    async ({token, chatId}, thunkAPI) => {
+    async ({ token, chatId }, thunkAPI) => {
         try {
 
             const headers = {
@@ -39,7 +39,7 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
                 method: "GET", headers
             });
 
-            if(data && Array.isArray(data)) return {
+            if (data && Array.isArray(data)) return {
                 id: chatId, msgs: data
             };
 
@@ -61,23 +61,23 @@ const chatsSlice = createSlice({
         messageStatus: "idle"
     },
     reducers: {
-        setMessage: (state, { payload: {chatId, newMessage} }) => {
+        setMessage: (state, { payload: { chatId, newMessage } }) => {
             state.messages[chatId] = [
                 newMessage,
                 ...state.messages[chatId]
             ];
-        }   
+        }
     },
     extraReducers: {
 
         /* fetching chats */
         [fetchChats.pending]: (state, action) => {
-           state.status = "pending";
+            state.status = "pending";
         },
         [fetchChats.rejected]: (state, action) => {
             state.status = "rejected";
         },
-        [fetchChats.fulfilled]: (state, {payload}) => {
+        [fetchChats.fulfilled]: (state, { payload }) => {
             return {
                 ...state, items: payload,
                 status: "fulfilled"
@@ -87,22 +87,37 @@ const chatsSlice = createSlice({
         /* fetching messages */
         [fetchMessages.pending]: (state, action) => {
             state.messageStatus = "pending";
-         },
-         [fetchMessages.rejected]: (state, action) => {
-             state.messageStatus = "rejected";
-         },
-         [fetchMessages.fulfilled]: (state, {payload: {id, msgs}}) => {
+        },
+        [fetchMessages.rejected]: (state, action) => {
+            state.messageStatus = "rejected";
+        },
+        [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
+            console.log("...state.messages[id]", id);
+
+            if (state.messages[id] === undefined) {
+                state.messages = {
+                    ...state.messages, [id]: msgs
+                };
+            }else {
+                state.messages = {
+                    ...state.messages, [id]: [
+                        ...(state.messages[id]),
+                        ...msgs
+                    ]
+                };
+            }
+
             //  state.messages = {
             //      ...state.messages, [id]: msgs
             //  };
-             state.messageStatus = "fulfilled";
-         },
+            //  state.messageStatus = "fulfilled";
+        },
     }
 });
 
 
 export const { setMessage } = chatsSlice.actions;
-export const getChats = (state ) => state.chats.items;
-export const getMessages = (state ) => state.chats.messages;
+export const getChats = (state) => state.chats.items;
+export const getMessages = (state) => state.chats.messages;
 
 export default chatsSlice.reducer;

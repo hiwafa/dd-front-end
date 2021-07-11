@@ -49,14 +49,13 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
 
       <FlatList
         inverted={true}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => `${item.id}`}
         style={{ height: viewHeight - headerHeight }}
         data={ messages[chatId] ? messages[chatId] : [] }
         renderItem={({ item }) => <ChatMessage userid={id} message={item} />}
       />
 
       <KeyboardAvoidingView
-        style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
         behavior="position">
         <InputTextBox chatId={chatId} userid={id}/>
       </KeyboardAvoidingView>
