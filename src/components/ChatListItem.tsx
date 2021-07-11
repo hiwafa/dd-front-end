@@ -3,19 +3,10 @@ import { View, Text, Image, StyleSheet, TouchableWithoutFeedback } from "react-n
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 
-import { useSelector, useDispatch } from "react-redux";
-import { fetchMessages } from '../store/actions/ChatsSlice';
-import { getUser } from '../store/actions/UserSlice';
 
 const ChatListItem = ({ chatRoom }) => {
 
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-  
-  const { token } = useSelector(getUser);
-
-
-
 
   const getAllName = ()=> {
 

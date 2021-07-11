@@ -10,6 +10,11 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMessages } from '../../store/actions/ChatsSlice';
+import { getUser } from '../../store/actions/UserSlice';
+
+
 export default function (props) {
   const route = useRoute();
   const headerHeight = useHeaderHeight();
@@ -17,11 +22,11 @@ export default function (props) {
 }
 
 
-
-
 export const ChatBox = ({headerHeight, route}) => {
 
-  
+  const dispatch = useDispatch();
+  const { token } = useSelector(getUser);
+
   const viewHeight = windowHeight - headerHeight;
   const route = route;
 
