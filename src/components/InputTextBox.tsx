@@ -19,6 +19,7 @@ const InputTextBox = ({chatId, userid}) => {
         id: Math.round(Math.random() * 9999999)
       }
     }));
+    setText("");
   }
 
   return (
