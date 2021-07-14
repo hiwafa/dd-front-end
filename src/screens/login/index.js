@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import { ImageBackground, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/actions/UserSlice";
@@ -39,50 +40,52 @@ export default ({ navigation: { navigate } }) => {
 
   return (
     <ImageBackground source={require('../../res/login_background_image.png')} style={{ backgroundColor: 'black', height: '100%' }}>
-      <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} />
       {/*BACKGROUND VIEW*/}
 
-      <View style={styles.loginContainer}>
-        {/*LOGIN VIEW*/}
+      <ScrollView>
+        {/* <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} /> */}
+        <View style={styles.loginContainer}>
+          {/*LOGIN VIEW*/}
 
-        <Text style={styles.header}>Welcome,</Text>
-        <Text style={styles.header}>Log in here</Text>
+          <Text style={styles.header}>Welcome,</Text>
+          <Text style={styles.header}>Log in here</Text>
 
-        {/*Input fields*/}
-        <Text style={styles.fieldText}>Username</Text>
-        <View style={styles.field}>
-          <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
-            onChangeText={ username => {
-              setState({ ...state, username });
-            }}
-          />
+          {/*Input fields*/}
+          <Text style={styles.fieldText}>Username</Text>
+          <View style={styles.field}>
+            <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={ username => {
+                setState({ ...state, username });
+              }}
+            />
+          </View>
+
+          <Text style={styles.fieldText}>Password</Text>
+          <View style={styles.field}>
+            <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={password => {
+                setState({ ...state, password });
+              }}
+            />
+          </View>
+
+          {/*Buttons*/}
+          <TouchableOpacity style={styles.button} onPress={onLogin}>
+            <Text style={{ color: 'white' }}>
+              Login
+            </Text>
+          </TouchableOpacity>
+
+          <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
+            <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
+              Forgot password?
+            </Text>
+            <Text onPress={() => navigate('Register')} style={styles.linkRight}>
+              Create account
+            </Text>
+          </View>
         </View>
-
-        <Text style={styles.fieldText}>Password</Text>
-        <View style={styles.field}>
-          <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }}
-            onChangeText={password => {
-              setState({ ...state, password });
-            }}
-          />
-        </View>
-
-        {/*Buttons*/}
-        <TouchableOpacity style={styles.button} onPress={onLogin}>
-          <Text style={{ color: 'white' }}>
-            Login
-          </Text>
-        </TouchableOpacity>
-
-        <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
-          <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
-            Forgot password?
-          </Text>
-          <Text onPress={() => navigate('Register')} style={styles.linkRight}>
-            Create account
-          </Text>
-        </View>
-      </View>
+      </ScrollView>
     </ImageBackground>
   )
 }
@@ -139,7 +142,8 @@ const styles = StyleSheet.create({
   loginContainer: {
     backgroundColor: '#fff',
     borderRadius: 16,
-    marginHorizontal: 55,
+    marginHorizontal: 25,
+    marginVertical: 25,
     paddingTop: 40
   },
 });
