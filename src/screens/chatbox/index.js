@@ -52,7 +52,26 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
       filters: {
         only_new: true
       }
-    }));
+    })).then(async ({ payload }) => {
+
+        
+      if (payload && payload.msgs) {
+
+        let messageIds = payload.msgs.map(itm => itm.id);
+        
+        console.log("bababa", messageIds);
+
+        request(`chat/message/delivered/`, {
+          method: "POST", headers, data: qs.stringify({
+            chat_id: chatId, message_ids: messageIds
+          })
+        }).then(_=> {}).catch(_=> {});
+
+      }
+
+    }).catch(_ => {
+
+    });
 
     const interval = setInterval(async () => {
 
@@ -68,8 +87,8 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         if (payload && payload.msgs) {
 
           let messageIds = payload.msgs.map(itm => itm.id);
-          
-          console.log("hihihi", messageIds);
+
+          console.log("hahahahhaha", messageIds);
 
           request(`chat/message/delivered/`, {
             method: "POST", headers, data: qs.stringify({
