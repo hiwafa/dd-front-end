@@ -94,8 +94,6 @@ const chatsSlice = createSlice({
             state.messageStatus = "rejected";
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
-
-            console.log("messages: ", msgs);
             
             state.messages = {
                 ...state.messages, [id]: msgs
