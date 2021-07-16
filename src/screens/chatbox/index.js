@@ -70,6 +70,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
 
       <FlatList
         inverted={true}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item) => `${item.id}`}
         style={{ height: viewHeight - headerHeight }}
         data={messages[chatId] ? messages[chatId] : []}
