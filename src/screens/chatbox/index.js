@@ -68,6 +68,8 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         if (payload && payload.msgs) {
 
           let messageIds = payload.msgs.map(itm => itm.id);
+          
+          console.log("hihihi", messageIds);
 
           request(`chat/message/delivered/`, {
             method: "POST", headers, data: qs.stringify({
