@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Text, FlatList, View, StyleSheet, Image, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Text, FlatList, View, StyleSheet, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import chats from '../../../data/chats';
 import ChatMessage from "../../components/ChatMessage";
@@ -22,7 +22,7 @@ export default function (props) {
 }
 
 
-export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
+export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) => {
 
   const dispatch = useDispatch();
   const { access_token, id } = useSelector(getUser);
@@ -30,7 +30,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
   const viewHeight = windowHeight - headerHeight;
 
 
-  useEffect(()=> {
+  useEffect(() => {
 
     dispatch(fetchMessages({
       token: access_token, chatId,
@@ -39,7 +39,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
         num_recent: 50
       }
     }));
-    
+
     dispatch(fetchMessages({
       token: access_token, chatId,
       filters: {
@@ -47,7 +47,7 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
       }
     }));
 
-    const interval = setInterval(async ()=> {
+    const interval = setInterval(async () => {
 
       dispatch(fetchMessages({
         token: access_token, chatId,
@@ -59,33 +59,33 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
 
     }, 2000);
 
-    return ()=> {
+    return () => {
       clearInterval(interval);
     }
 
   }, []);
 
   return (
-    <View style={[styles.background, { height: viewHeight }]}>
+    <View style={styles.background}>
 
       <FlatList
         inverted={true}
         keyExtractor={(item) => `${item.id}`}
         style={{ height: viewHeight - headerHeight }}
-        data={ messages[chatId] ? messages[chatId] : [] }
+        data={messages[chatId] ? messages[chatId] : []}
         renderItem={({ item }) => <ChatMessage userid={id} message={item} />}
       />
 
-      <KeyboardAvoidingView
-        behavior="position">
-        <InputTextBox chatId={chatId} userid={id} token={access_token}/>
-      </KeyboardAvoidingView>
+      <InputTextBox chatId={chatId} userid={id} token={access_token} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#f3f3f3',
+    flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: '#f3f3f3'
   },
 });
