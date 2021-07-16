@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchMessages } from '../../store/actions/ChatsSlice';
 import { getUser } from '../../store/actions/UserSlice';
 import { getMessages } from '../../store/actions/ChatsSlice';
+import { request } from '../api';
+
 
 export default function (props) {
 
@@ -39,6 +41,11 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         num_recent: 50
       }
     }));
+    
+    const headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": `Bearer ${access_token}`
+    };
 
     dispatch(fetchMessages({
       token: access_token, chatId,
@@ -46,7 +53,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         only_new: true
       }
     }));
-
+    
     const interval = setInterval(async () => {
 
       dispatch(fetchMessages({
@@ -55,7 +62,15 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
           only_new: true,
           num_recent: 10
         }
-      }));
+      })).then(({payload}) => {
+
+        if(payload && payload.msgs){
+          console.log("unread messages: ", payload.msgs)
+        }
+
+      }).catch(_=> {
+
+      });
 
     }, 2000);
 
