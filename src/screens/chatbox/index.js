@@ -27,16 +27,29 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
   const dispatch = useDispatch();
   const { access_token, id } = useSelector(getUser);
   const messages = useSelector(getMessages);
-  
   const viewHeight = windowHeight - headerHeight;
+
 
   useEffect(()=> {
 
+    dispatch(fetchMessages({
+      token: access_token, chatId,
+      filters: {
+        only_new: false,
+        num_recent: 50
+      }
+    }));
+
     const interval = setInterval(async ()=> {
 
-      dispatch(fetchMessages({token: access_token, chatId}));
+      dispatch(fetchMessages({
+        token: access_token, chatId,
+        filters: {
+          only_new: true
+        }
+      }));
 
-    }, 1000);
+    }, 2000);
 
     return ()=> {
       clearInterval(interval);

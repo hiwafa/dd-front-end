@@ -11,6 +11,8 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 "Authorization": `Bearer ${token}`
             };
 
+            
+
             const { data } = await request("chat/", {
                 method: "GET", headers
             });
@@ -27,7 +29,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
 );
 
 export const fetchMessages = createAsyncThunk("chats/fetchMessages",
-    async ({ token, chatId }, thunkAPI) => {
+    async ({ token, chatId, filters }, thunkAPI) => {
         try {
 
             const headers = {
@@ -36,7 +38,7 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
             };
 
             const { data } = await request(`chat/message/${chatId}/`, {
-                method: "GET", headers
+                method: "GET", headers, data: filters
             });
 
             if (data && Array.isArray(data)) return {
