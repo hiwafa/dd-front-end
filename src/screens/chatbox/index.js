@@ -14,8 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchMessages } from '../../store/actions/ChatsSlice';
 import { getUser } from '../../store/actions/UserSlice';
 import { getMessages } from '../../store/actions/ChatsSlice';
-import { request } from '../api';
-
+import { request } from '../../api';
+const qs = require('qs');
 
 export default function (props) {
 
@@ -41,7 +41,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         num_recent: 50
       }
     }));
-    
+
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
       "Authorization": `Bearer ${access_token}`
@@ -53,7 +53,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         only_new: true
       }
     }));
-    
+
     const interval = setInterval(async () => {
 
       dispatch(fetchMessages({
@@ -62,13 +62,22 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
           only_new: true,
           num_recent: 10
         }
-      })).then(({payload}) => {
+      })).then(async ({ payload }) => {
 
-        if(payload && payload.msgs){
-          console.log("unread messages: ", payload.msgs)
+        
+        if (payload && payload.msgs) {
+
+          let messageIds = payload.msgs.map(itm => itm.id);
+
+          request(`chat/message/delivered/`, {
+            method: "POST", headers, data: qs.stringify({
+              chat_id: chatId, message_ids: messageIds
+            })
+          }).then(_=> {}).catch(_=> {});
+
         }
 
-      }).catch(_=> {
+      }).catch(_ => {
 
       });
 
