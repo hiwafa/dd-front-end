@@ -39,13 +39,21 @@ export const ChatBox = ({headerHeight, route: { params: {chatId, name} } }) => {
         num_recent: 50
       }
     }));
+    
+    dispatch(fetchMessages({
+      token: access_token, chatId,
+      filters: {
+        only_new: true
+      }
+    }));
 
     const interval = setInterval(async ()=> {
 
       dispatch(fetchMessages({
         token: access_token, chatId,
         filters: {
-          only_new: true
+          only_new: true,
+          num_recent: 10
         }
       }));
 
