@@ -1,15 +1,12 @@
 import React from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function(props) {
-  return <UserImage {...props} />;
-}
+export default ({userImage})=> {
 
-export class UserImage extends React.Component{
-  render() {
-    const props = this.props;
+
+
     return (
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity style={{marginLeft: 10, marginTop: 10}}>
@@ -17,10 +14,10 @@ export class UserImage extends React.Component{
         </TouchableOpacity>
         
         <Image
-          source={{uri: props.userImage}}
+          source={{uri: userImage}}
           style={{width: 40, height: 40, borderRadius: 40/2, marginLeft: 15}}
         />
       </View>
     );
-  }
+
 }
