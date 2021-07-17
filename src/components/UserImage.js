@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default ({ userImage }) => {
 
-  const { navigate, goBack } = useNavigation();
+  const { goBack } = useNavigation();
 
   return (
     <View style={{ flexDirection: 'row' }}>

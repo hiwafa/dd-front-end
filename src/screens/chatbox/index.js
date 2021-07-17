@@ -26,13 +26,12 @@ export default function (props) {
 
 export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) => {
 
-  console.log("CHAT ID: ", chatId);
+  
 
   const dispatch = useDispatch();
   const { access_token, id } = useSelector(getUser);
   const messages = useSelector(getMessages);
   const viewHeight = windowHeight - headerHeight;
-
 
   useEffect(() => {
 
