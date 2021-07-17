@@ -13,8 +13,7 @@ const ChatMessage = ({message, userid}) => {
   return (
     <View style={[
       styles.container, {
-        alignSelf: myMessage() ? 'flex-end' : 'flex-start',
-
+        alignSelf: myMessage() ? 'flex-end' : 'flex-start'
       }
     ]}>
       <View style={[

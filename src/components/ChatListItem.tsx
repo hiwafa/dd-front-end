@@ -30,6 +30,7 @@ const ChatListItem = ({ chatRoom }) => {
   return (
     <TouchableWithoutFeedback onPress={onClick}>
       <View style={styles.container}>
+        
         <View style={styles.leftContainer}>
           {/* <Image source={{ uri: "" }} style={styles.avatar}/> */}
 
@@ -37,7 +38,9 @@ const ChatListItem = ({ chatRoom }) => {
             <Text style={styles.username}>{getAllName()}</Text>
             <Text numberOfLines={1} style={styles.lastMessage}>No Last Message</Text>
           </View>
+
         </View>
+
         <Text style={styles.time}>{moment(new Date(chatRoom.last_activity)).format("DD/MM/YYYY")}</Text>
       </View>
     </TouchableWithoutFeedback>
