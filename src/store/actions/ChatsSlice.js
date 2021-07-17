@@ -11,16 +11,17 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 "Authorization": `Bearer ${token}`
             };
 
+            
             const { data } = await request("chat/", {
                 method: "GET", headers
             });
-
+            
             if (data && Array.isArray(data) && data.length > 0) return data;
 
             return thunkAPI.rejectWithValue("No Data for chats");
 
         } catch (err) {
-
+            
             return thunkAPI.rejectWithValue(err.message);
         }
     }
