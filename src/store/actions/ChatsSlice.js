@@ -11,8 +11,6 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 "Authorization": `Bearer ${token}`
             };
 
-            
-
             const { data } = await request("chat/", {
                 method: "GET", headers
             });
