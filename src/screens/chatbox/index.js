@@ -41,7 +41,8 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
     // }));
 
     const headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
+      // "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
       "Authorization": `Bearer ${access_token}`
     };
 
@@ -64,16 +65,18 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
     const interval = setInterval(async () => {
       dispatch(fetchMessages({
         token: access_token, chatId,
-        only_new: true, num_recent: 3
+        only_new: true, num_recent: 1
       })).then(async ({ payload }) => {
         if (payload && payload.msgs) {
           let messageIds = payload.msgs.map(itm => itm.id);
-          console.log("hahahahaha", messageIds);
-          // request(`chat/message/delivered/`, {
-          //   method: "POST", headers, data: qs.stringify({
-          //     chat_id: chatId, message_ids: messageIds
-          //   })
-          // }).then(_=> {}).catch(_=> {});
+          console.log("hahahahaha", payload.msgs);
+
+          request(`chat/message/delivered/`, {
+            method: "POST", headers, data: {
+              chat_id: chatId, message_ids: messageIds
+            }
+          }).then(_=> {}).catch(_=> {});
+
         }
       }).catch(_ => {});
     }, 2000);
