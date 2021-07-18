@@ -79,7 +79,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         token: access_token, chatId,
         filters: {
           only_new: true,
-          // num_recent: 10
+          num_recent: 10
         }
       })).then(async ({ payload }) => {
         

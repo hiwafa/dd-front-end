@@ -40,6 +40,8 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
                 method: "GET", headers, data: filters
             });
 
+            console.log("DATA:   ", data);
+
             if (data && Array.isArray(data)) return {
                 id: chatId, msgs: data
             };
