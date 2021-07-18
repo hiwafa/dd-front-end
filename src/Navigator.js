@@ -17,6 +17,7 @@ import Settings from "./screens/settings";
 
 import { loadCredential, isLoggedIn } from "./store/actions/UserSlice";
 import { fetchChats } from "./store/actions/ChatsSlice";
+import { signin } from './store/actions/UserSlice';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -54,16 +55,40 @@ export default () => {
     useEffect(() => {
 
         // SecureStore.deleteItemAsync("credential");
-        dispatch(loadCredential(null)).then(({payload}) => {
+        dispatch(loadCredential(null)).then(async ({ payload }) => {
             console.log("Payload Data: ", payload);
-            if(payload.access_token) dispatch(fetchChats(payload.access_token));
-        }).then( _=> {});
+            // grant_type: "password", password, username
+            const { expires_in, access_token, password, username } = payload;
+            if (access_token && expires_in) {
+
+
+                if ((new Date()).getTime() > expires_in) {
+
+                    const dd = await dispatch(signin({
+                        grant_type: "password",
+                        password, username
+                    }));
+
+                    if (dd.payload && dd.payload.access_token
+                        && dd.payload.expires_in) {
+
+                        dispatch(fetchChats(dd.payload.access_token));
+                    } else {
+                        alert("Something went wrong, please try again!");
+                    }
+
+                } else {
+                    dispatch(fetchChats(access_token));
+                }
+            };
+
+        }).then(_ => { });
 
     }, []);
 
     const loadScreens = () => {
 
-        if(isSingIn ==='loading') return <SplashScreen />;
+        if (isSingIn === 'loading') return <SplashScreen />;
 
         if (isSingIn === "loaded") return (
             <Stack.Navigator
