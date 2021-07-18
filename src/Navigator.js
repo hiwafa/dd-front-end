@@ -56,11 +56,9 @@ export default () => {
 
         // SecureStore.deleteItemAsync("credential");
         dispatch(loadCredential(null)).then(async ({ payload }) => {
-            console.log("Payload Data: ", payload);
-            // grant_type: "password", password, username
+
             const { expires_in, access_token, password, username } = payload;
             if (access_token && expires_in) {
-
 
                 if ((new Date()).getTime() > expires_in) {
 
