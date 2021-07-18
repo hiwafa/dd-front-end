@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { request } from "../../api";
-
+const qs = require('qs');
 
 export const fetchChats = createAsyncThunk("chats/fetchChats",
     async (token, thunkAPI) => {
@@ -37,10 +37,8 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
             };
 
             const { data } = await request(`chat/message/${chatId}/`, {
-                method: "GET", headers, data: filters
+                method: "GET", headers, data: qs.stringify(JSON.stringify(filters))
             });
-
-            console.log("DATA:   ", data);
 
             if (data && Array.isArray(data)) return {
                 id: chatId, msgs: data
@@ -105,26 +103,11 @@ const chatsSlice = createSlice({
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
 
-            console.log("messages 111: ", msgs);
-
             state.messages = {
                 ...state.messages, [id]: msgs
             };
 
-            // if (state.messages[id] === undefined) {
-            //     state.messages = {
-            //         ...state.messages, [id]: msgs
-            //     };
-            // } else {
-            //     state.messages = {
-            //         ...state.messages, [id]: [
-            //             ...(state.messages[id]),
-            //             ...msgs
-            //         ]
-            //     };
-            // }
-
-            // state.messageStatus = "fulfilled";
+            state.messageStatus = "fulfilled";
         },
     }
 });

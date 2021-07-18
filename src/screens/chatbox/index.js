@@ -36,10 +36,8 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
   useEffect(() => {
 
     dispatch(fetchMessages({
-      token: access_token, chatId,
-      filters: {
-        only_new: false,
-        num_recent: 50
+      token: access_token, chatId, filters: {
+        only_new: false, num_recent: 50
       }
     }));
 
@@ -50,58 +48,38 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
 
     dispatch(fetchMessages({
       token: access_token, chatId,
-      filters: {
-        only_new: true
-      }
+      filters: { only_new: true }
     })).then(async ({ payload }) => {
-
       if (payload && payload.msgs) {
-
         let messageIds = payload.msgs.map(itm => itm.id);
-        
         console.log("bababa", messageIds);
-
         request(`chat/message/delivered/`, {
           method: "POST", headers, data: qs.stringify({
             chat_id: chatId, message_ids: messageIds
           })
         }).then(_=> {}).catch(_=> {});
-
       }
+    }).catch(_ => {});
 
-    }).catch(_ => {
-
-    });
+    
 
     const interval = setInterval(async () => {
-
       dispatch(fetchMessages({
         token: access_token, chatId,
-        filters: {
-          only_new: true,
-          num_recent: 10
-        }
+        filters: { only_new: true, num_recent: 10 }
       })).then(async ({ payload }) => {
-        
         if (payload && payload.msgs) {
-          
           let messageIds = payload.msgs.map(itm => itm.id);
-
           console.log("hahahahaha", payload.msgs);
-
           request(`chat/message/delivered/`, {
             method: "POST", headers, data: qs.stringify({
               chat_id: chatId, message_ids: messageIds
             })
           }).then(_=> {}).catch(_=> {});
-
         }
-
-      }).catch(_ => {
-
-      });
-
+      }).catch(_ => {});
     }, 2000);
+
 
     return () => {
       clearInterval(interval);
