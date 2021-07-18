@@ -24,7 +24,6 @@ const InputTextBox = ({ chatId, userid, token }) => {
         }
       }));
 
-
       const headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": `Bearer ${token}`
@@ -54,7 +53,7 @@ const InputTextBox = ({ chatId, userid, token }) => {
           style={styles.textInputBox}
           multiline
           value={text}
-          onChangeText={text => setText(text)}
+          onChangeText={txt => setText(txt)}
         />
         <View style={{ width: 100, marginLeft: 10 }}>
           <TouchableOpacity style={styles.sendButton} onPress={onSendPress}>

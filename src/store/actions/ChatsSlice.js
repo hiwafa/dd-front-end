@@ -11,17 +11,17 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 "Authorization": `Bearer ${token}`
             };
 
-            
+
             const { data } = await request("chat/", {
                 method: "GET", headers
             });
-            
+
             if (data && Array.isArray(data) && data.length > 0) return data;
 
             return thunkAPI.rejectWithValue("No Data for chats");
 
         } catch (err) {
-            
+
             return thunkAPI.rejectWithValue(err.message);
         }
     }
@@ -63,10 +63,19 @@ const chatsSlice = createSlice({
     },
     reducers: {
         setMessage: (state, { payload: { chatId, newMessage } }) => {
-            state.messages[chatId] = [
-                newMessage,
-                ...state.messages[chatId]
-            ];
+
+            console.log("state.messages: ", JSON.stringify(state.messages));
+
+            if (state.messages[chatId]) {
+                state.messages[chatId] = [
+                    newMessage,
+                    ...state.messages[chatId]
+                ];
+            } else {
+                state.messages[chatId] = [newMessage];
+            }
+
+
         }
     },
     extraReducers: {
@@ -93,7 +102,9 @@ const chatsSlice = createSlice({
             state.messageStatus = "rejected";
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
-            
+
+            console.log("messages 111: ", msgs);
+
             state.messages = {
                 ...state.messages, [id]: msgs
             };
@@ -111,7 +122,7 @@ const chatsSlice = createSlice({
             //     };
             // }
 
-            state.messageStatus = "fulfilled";
+            // state.messageStatus = "fulfilled";
         },
     }
 });

@@ -63,7 +63,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
 
         request(`chat/message/delivered/`, {
           method: "POST", headers, data: qs.stringify({
-            chat_id: chatId, message_ids: JSON.stringify(messageIds)
+            chat_id: chatId, message_ids: messageIds
           })
         }).then(_=> {}).catch(_=> {});
 
@@ -79,7 +79,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         token: access_token, chatId,
         filters: {
           only_new: true,
-          num_recent: 10
+          // num_recent: 10
         }
       })).then(async ({ payload }) => {
         
@@ -91,7 +91,7 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
 
           request(`chat/message/delivered/`, {
             method: "POST", headers, data: qs.stringify({
-              chat_id: chatId, message_ids: JSON.stringify(messageIds)
+              chat_id: chatId, message_ids: messageIds
             })
           }).then(_=> {}).catch(_=> {});
 
