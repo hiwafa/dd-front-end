@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { request } from "../../api";
-const qs = require('qs');
+var qs = require('qs');
 
 export const fetchChats = createAsyncThunk("chats/fetchChats",
     async (token, thunkAPI) => {
@@ -10,7 +10,6 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": `Bearer ${token}`
             };
-
 
             const { data } = await request("chat/", {
                 method: "GET", headers
@@ -28,7 +27,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
 );
 
 export const fetchMessages = createAsyncThunk("chats/fetchMessages",
-    async ({ token, chatId, filters }, thunkAPI) => {
+    async ({ token, chatId, only_new, num_recent }, thunkAPI) => {
         try {
 
             const headers = {
@@ -36,9 +35,16 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
                 "Authorization": `Bearer ${token}`
             };
 
-            const { data } = await request(`chat/message/${chatId}/`, {
-                method: "GET", headers, data: qs.stringify(JSON.stringify(filters))
+            const theUrl = num_recent ? `chat/message/${chatId}/?only_new=${only_new}&num_recent=${num_recent}`
+                : `chat/message/${chatId}/?only_new=${only_new}`;
+
+            const { data } = await request(theUrl, {
+                method: "GET", headers
             });
+
+            // const { data } = await request(`chat/message/${chatId}/`, {
+            //     method: "GET", headers, data: qs.stringify(JSON.stringify(filters))
+            // });
 
             if (data && Array.isArray(data)) return {
                 id: chatId, msgs: data

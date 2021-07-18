@@ -58,6 +58,9 @@ export default () => {
         dispatch(loadCredential(null)).then(async ({ payload }) => {
 
             const { expires_in, access_token, password, username } = payload;
+
+            console.log("TOKEN : ", access_token);
+            
             if (access_token && expires_in) {
 
                 if ((new Date()).getTime() > expires_in) {
