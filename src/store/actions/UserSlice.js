@@ -18,7 +18,8 @@ export const signup = createAsyncThunk("user/signup",
                 // thunkAPI.dispatch(setUser(params));
 
                 saveSecure("credential", {
-                    ...data, ...params
+                    ...data, ...params,
+                    expires_in: (new Date()).getTime() + (data.expires_in * 1000)
                 });
 
                 return { ...data, ...params, loginStatus: "loaded" };
@@ -44,7 +45,8 @@ export const signin = createAsyncThunk("user/signin",
             if(data && data.access_token && data.expires_in){
 
                 saveSecure("credential", {
-                    ...data, ...params
+                    ...data, ...params,
+                    expires_in: (new Date()).getTime() + (data.expires_in * 1000)
                 });
 
                 return { ...data, ...params, loginStatus: "loaded" };

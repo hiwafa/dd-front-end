@@ -60,7 +60,6 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
         }).then(_=> {}).catch(_=> {});
       }
     }).catch(_ => {});
-
     
 
     const interval = setInterval(async () => {

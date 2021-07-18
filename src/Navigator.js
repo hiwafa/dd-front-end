@@ -55,7 +55,7 @@ export default () => {
 
         // SecureStore.deleteItemAsync("credential");
         dispatch(loadCredential(null)).then(({payload}) => {
-            console.log("payload.access_token: ", payload.access_token);
+            console.log("Payload Data: ", payload);
             if(payload.access_token) dispatch(fetchChats(payload.access_token));
         }).then( _=> {});
 
