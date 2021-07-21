@@ -66,8 +66,6 @@ const chatsSlice = createSlice({
     reducers: {
         setMessage: (state, { payload: { chatId, newMessage } }) => {
 
-            console.log("state.messages: ", JSON.stringify(state.messages));
-
             if (state.messages[chatId]) {
                 state.messages[chatId] = [
                     newMessage,
