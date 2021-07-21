@@ -7,7 +7,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
         try {
 
             const headers = {
-                "Content-Type": "application/x-www-form-urlencoded",
+                // "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": `Bearer ${token}`
             };
 
@@ -41,10 +41,6 @@ export const fetchMessages = createAsyncThunk("chats/fetchMessages",
             const { data } = await request(theUrl, {
                 method: "GET", headers
             });
-
-            // const { data } = await request(`chat/message/${chatId}/`, {
-            //     method: "GET", headers, data: qs.stringify(JSON.stringify(filters))
-            // });
 
             if (data && Array.isArray(data)) return {
                 id: chatId, msgs: data
