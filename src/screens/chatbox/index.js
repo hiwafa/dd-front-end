@@ -33,6 +33,8 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
   const messages = useSelector(getMessages);
   const viewHeight = windowHeight - headerHeight;
 
+  console.log("BABABABA", id);
+  
   useEffect(() => {
 
     // dispatch(fetchMessages({
@@ -46,31 +48,29 @@ export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) =
       "Authorization": `Bearer ${access_token}`
     };
 
-    // dispatch(fetchMessages({
-    //   token: access_token, chatId,
-    //   only_new: true
-    // })).then(async ({ payload }) => {
-    //   if (payload && payload.msgs) {
-    //     let messageIds = payload.msgs.map(itm => itm.id);
-    //     console.log("bababa", messageIds);
-    //     request(`chat/message/delivered/`, {
-    //       method: "POST", headers, data: qs.stringify({
-    //         chat_id: chatId, message_ids: messageIds
-    //       })
-    //     }).then(_=> {}).catch(_=> {});
-    //   }
-    // }).catch(_ => {});
-    
+    dispatch(fetchMessages({
+      token: access_token, chatId,
+      only_new: true
+    })).then(async ({ payload }) => {
+      if (payload && payload.msgs) {
+        let messageIds = payload.msgs.map(itm => itm.id);
+        console.log("bababa", messageIds);
+        request(`chat/message/delivered/`, {
+          method: "POST", headers, data: qs.stringify({
+            chat_id: chatId, message_ids: messageIds
+          })
+        }).then(_=> {}).catch(_=> {});
+      }
+    }).catch(_ => {});
 
     const interval = setInterval(async () => {
       dispatch(fetchMessages({
         token: access_token, chatId,
-        only_new: true, num_recent: 1
+        only_new: true, num_recent: 10
       })).then(async ({ payload }) => {
         if (payload && payload.msgs) {
-          let messageIds = payload.msgs.map(itm => itm.id);
-          console.log("hahahahaha", payload.msgs);
 
+          let messageIds = payload.msgs.map(itm => itm.id);
           request(`chat/message/delivered/`, {
             method: "POST", headers, data: {
               chat_id: chatId, message_ids: messageIds
