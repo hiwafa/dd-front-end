@@ -31,10 +31,10 @@ export const ChatBox = ({ route: { params: { chatId } } }) => {
   
   useEffect(() => {
 
-    // dispatch(fetchMessages({
-    //   token: access_token, chatId,
-    //   only_new: false, num_recent: 50
-    // }));
+    dispatch(fetchMessages({
+      token: access_token, chatId,
+      only_new: false, num_recent: 50
+    }));
 
     const headers = {
       // "Content-Type": "application/x-www-form-urlencoded",
