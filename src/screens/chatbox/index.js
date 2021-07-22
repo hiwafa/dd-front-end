@@ -17,12 +17,7 @@ import { getMessages } from '../../store/actions/ChatsSlice';
 import { request } from '../../api';
 const qs = require('qs');
 
-export default function (props) {
-
-  return <ChatBox {...props} />;
-}
-
-// export default memo(()=> <ChatBox {...props} />);
+export default memo(()=> <ChatBox {...props} />);
 
 export const ChatBox = ({ route: { params: { chatId } } }) => {
 
