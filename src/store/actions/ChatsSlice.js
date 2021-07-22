@@ -103,9 +103,11 @@ const chatsSlice = createSlice({
         },
         [fetchMessages.fulfilled]: (state, { payload: { id, msgs } }) => {
 
-            state.messages = {
-                ...state.messages, [id]: msgs
-            };
+            if(msgs && msgs.length){
+                state.messages = {
+                    ...state.messages, [id]: msgs
+                };
+            }       
 
             state.messageStatus = "fulfilled";
         },

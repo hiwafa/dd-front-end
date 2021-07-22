@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, memo } from 'react';
 import { Text, FlatList, View, StyleSheet, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import chats from '../../../data/chats';
@@ -19,16 +19,17 @@ const qs = require('qs');
 
 export default function (props) {
 
-  const headerHeight = useHeaderHeight();
-  return <ChatBox {...props} headerHeight={headerHeight} />;
+  return <ChatBox {...props} />;
 }
 
+// export default memo(()=> <ChatBox {...props} />);
 
-export const ChatBox = ({ headerHeight, route: { params: { chatId, name } } }) => {
+export const ChatBox = ({ route: { params: { chatId } } }) => {
 
   
 
   const dispatch = useDispatch();
+  const headerHeight = useHeaderHeight();
   const { access_token, id } = useSelector(getUser);
   const messages = useSelector(getMessages);
   const viewHeight = windowHeight - headerHeight;
