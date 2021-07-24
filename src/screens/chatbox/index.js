@@ -37,7 +37,6 @@ export const ChatBox = ({ route: { params: { chatId } } }) => {
     }));
 
     const headers = {
-      // "Content-Type": "application/x-www-form-urlencoded",
       "Content-Type": "application/json",
       "Authorization": `Bearer ${access_token}`
     };

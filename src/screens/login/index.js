@@ -26,6 +26,7 @@ export default ({ navigation: { navigate } }) => {
         if (payload && payload.access_token && payload.expires_in) { 
           
         } else {
+          console.log("payload::: ", payload);
           alert("Something went wrong, please try again!");
         }
 

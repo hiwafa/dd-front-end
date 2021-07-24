@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Message } from "../../types";
 import moment from "moment";
 
 
 
-const ChatMessage = ({message, userid}) => {
+export default memo(({message, userid}) => {
 
 
-  const myMessage = () => message.sender === userid;
+  const myMessage = message.sender === userid;
 
   return (
     <View style={[
       styles.container, {
-        alignSelf: myMessage() ? 'flex-end' : 'flex-start'
+        alignSelf: myMessage ? 'flex-end' : 'flex-start'
       }
     ]}>
       <View style={[
         styles.message, {
-            backgroundColor: myMessage() ? 'gray' : '#2037A5',
-            marginLeft: myMessage() ? 50 : 0,
-            marginRight: myMessage() ? 0 : 50,
-            borderTopRightRadius: myMessage() ? 0: 10,
-            borderTopLeftRadius: myMessage() ? 10: 0,
+            backgroundColor: myMessage ? 'gray' : '#2037A5',
+            marginLeft: myMessage ? 50 : 0,
+            marginRight: myMessage ? 0 : 50,
+            borderTopRightRadius: myMessage ? 0: 10,
+            borderTopLeftRadius: myMessage ? 10: 0,
         }
       ]}>
         <Text style={styles.content}>{message.content}</Text>
@@ -30,7 +30,7 @@ const ChatMessage = ({message, userid}) => {
       </View>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create ({
   container: {
@@ -52,5 +52,3 @@ const styles = StyleSheet.create ({
     fontSize: 11,
   }
 });
-
-export default ChatMessage;

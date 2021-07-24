@@ -51,7 +51,7 @@ export const signin = createAsyncThunk("user/signin",
 
                 return { ...data, ...params, loginStatus: "loaded" };
             }
-
+            
             return thunkAPI.rejectWithValue(qs.stringify(data));
 
         } catch (err) {
