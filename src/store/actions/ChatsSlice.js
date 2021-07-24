@@ -7,7 +7,6 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
         try {
 
             const headers = {
-                // "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": `Bearer ${token}`
             };
 
