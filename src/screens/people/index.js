@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,16 +8,22 @@ import { getUser } from '../../store/actions/UserSlice';
 
 export default () => {
 
+    const [people, setPeople] = useReducer((_, v)=> v, []);
+
     const dispatch = useDispatch();
     const user = useSelector(getUser);
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        (async ()=> {
+        (async () => {
+            try {
 
-            const {payload} = dispatch(fetchPeople(user.access_token));
-            
+                const { payload } = await dispatch(fetchPeople(user.access_token));
+                if(payload && Array.isArray(payload)) setPeople(payload);
 
+            } catch (err) {
+
+            }
         })();
 
     }, []);
