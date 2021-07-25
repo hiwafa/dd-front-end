@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { request } from "../../api";
 
-const fetchPeople = createAsyncThunk('people/fetchPeople',
+export const fetchPeople = createAsyncThunk('people/fetchPeople',
     async (token, thunkAPI )=> {
         try {
 
@@ -15,7 +15,7 @@ const fetchPeople = createAsyncThunk('people/fetchPeople',
 
             if (data && Array.isArray(data) && data.length > 0) return data;
 
-            return thunkAPI.rejectWithValue("No Data for chats");
+            return thunkAPI.rejectWithValue("No Data for people");
 
         } catch (err) {
 
