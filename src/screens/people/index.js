@@ -30,7 +30,16 @@ export default () => {
 
     return (
         <View style={styles.container}>
-            <Text>Poeple</Text>
+            <FlatList
+                data={people}
+                keyExtractor={(item) => `@${item.id}`}
+                renderItem={({ item }) => {
+
+                    return (
+                        <Text>{item.email}</Text>
+                    );
+                }}
+            />
         </View>
     );
 }
