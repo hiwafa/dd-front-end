@@ -9,6 +9,7 @@ import UserImage from './components/UserImage';
 
 import Home from "./screens/home";
 import Login from "./screens/login";
+import Poeple from "./screens/people";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
 import ChatBox from "./screens/chatbox";
@@ -41,6 +42,7 @@ const TabNav = () => {
                     drawUnderTabBar: false
                 }} />
             <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Poeple" component={Poeple} />
         </Tab.Navigator>
     );
 }
