@@ -1,1 +1,1 @@
-export const avatar = require("../../assets/avatar.png");
+export const placeHolderImage = require("../../assets/avatar.png");

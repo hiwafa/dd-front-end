@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchPeople } from '../../store/actions/PeopleSlice';
 import { getUser } from '../../store/actions/UserSlice';
+import { Avatar, ListItem } from 'react-native-elements';
+import { placeHolderImage } from '../../constants';
 
 export default () => {
 
-    const [people, setPeople] = useReducer((_, v)=> v, []);
+    const [people, setPeople] = useReducer((_, v) => v, []);
 
     const dispatch = useDispatch();
     const user = useSelector(getUser);
@@ -19,7 +21,7 @@ export default () => {
             try {
 
                 const { payload } = await dispatch(fetchPeople(user.access_token));
-                if(payload && Array.isArray(payload)) setPeople(payload);
+                if (payload && Array.isArray(payload)) setPeople(payload);
 
             } catch (err) {
 
@@ -40,11 +42,24 @@ export default () => {
                     // last_name
 
                     return (
-                        <View>
-                            <Image style={{width: 50, height: 50, borderRadius: 25}}
-                            source={item.rofile_picture_url ? {uri: item.rofile_picture_url} : }/>
-                            <Text>{item.email}</Text>
-                        </View>
+                        <ListItem>
+
+                            <Avatar
+                                title={`${item.first_name[0]}${item.last_name[0]}`}
+                                source={
+                                    item.rofile_picture_url ?
+                                    { uri: item.rofile_picture_url } :
+                                    placeHolderImage
+                                }
+                            />
+
+                            <ListItem.Content>
+                                <ListItem.Title>{item.first_name}</ListItem.Title>
+                                <ListItem.Title>{item.last_name}</ListItem.Title>
+                            </ListItem.Content>
+                            <ListItem.Chevron />
+
+                        </ListItem>
                     );
                 }}
             />
