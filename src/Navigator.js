@@ -96,25 +96,21 @@ export default () => {
 
         if (isSingIn === "loaded") return (
             <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
                 initialRouteName="TabNav"
+                screenOptions={{ headerShown: false }}
             >
-
                 <Stack.Screen name="TabNav" component={TabNav} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="ChatBox" component={ChatBox}
                     options={({ route }) => ({
                         headerShown: true,
-                        headerLeft: props => <UserImage userImage={route.params.userImage} />,
                         title: route.params.name,
-                        headerRight: () => <MaterialCommunityIcons name="video-box" size={35} color="#2037A5" style={styles.videoIcon} />,
-                        headerStyle: {
-                            backgroundColor: '#efddbb',
-                        },
-
-                    })} />
+                        headerLeft: props => <UserImage userImage={route.params.userImage} />,
+                        headerRight: () => <MaterialCommunityIcons name="video-box" size={35}
+                        color="#2037A5" style={styles.videoIcon} />,
+                        headerStyle: { backgroundColor: '#efddbb' }
+                    })}
+                />
 
             </Stack.Navigator>
         )
