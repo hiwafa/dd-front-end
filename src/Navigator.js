@@ -38,7 +38,7 @@ const TabNav = () => {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="ChatList" component={ChatList}
-                // screenOptions={{ drawUnderTabBar: false }}
+            // screenOptions={{ drawUnderTabBar: false }}
             />
             <Tab.Screen name="Profile" component={Profile} />
             <Tab.Screen name="Poeple" component={Poeple} />
@@ -106,8 +106,8 @@ export default () => {
                         title: route.params.name,
                         headerStyle: { backgroundColor: '#efddbb' },
                         headerLeft: props => <UserImage userImage={route.params.userImage} />,
-                        headerRight: () => <MaterialCommunityIcons name="video-box" size={35}
-                            color="#2037A5" style={styles.videoIcon} />
+                        headerRight: () => <MaterialCommunityIcons name="video-box"
+                            size={35} color="#2037A5" style={styles.videoIcon} />
                     })}
                 />
 
@@ -120,7 +120,7 @@ export default () => {
                 <Stack.Screen name="Register" component={Register} />
             </Stack.Navigator>
         )
-    }
+    };
 
     return (
         <NavigationContainer>
