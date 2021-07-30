@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,8 +35,16 @@ export default () => {
                 keyExtractor={(item) => `@${item.id}`}
                 renderItem={({ item }) => {
 
+                    // rofile_picture_url
+                    // first_name
+                    // last_name
+
                     return (
-                        <Text>{item.email}</Text>
+                        <View>
+                            <Image style={{width: 50, height: 50, borderRadius: 25}}
+                            source={item.rofile_picture_url ? {uri: item.rofile_picture_url} : }/>
+                            <Text>{item.email}</Text>
+                        </View>
                     );
                 }}
             />
