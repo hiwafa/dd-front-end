@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -61,11 +61,11 @@ export default () => {
 
             const { expires_in, access_token, password, username } = payload;
 
-            console.log("TOKEN : ", access_token);
-            
             if (access_token && expires_in) {
 
                 if ((new Date()).getTime() > expires_in) {
+
+                    alert("token expired, re-login");
 
                     const dd = await dispatch(signin({
                         grant_type: "password",
@@ -76,8 +76,9 @@ export default () => {
                         && dd.payload.expires_in) {
 
                         dispatch(fetchChats(dd.payload.access_token));
+                        
                     } else {
-                        alert("Something went wrong, please try again!");
+                        alert("Something went wrong, Navigator line 80");
                     }
 
                 } else {

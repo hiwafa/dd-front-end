@@ -33,8 +33,7 @@ export default () => {
     return (
         <View style={styles.container}>
             <View style={{
-                width: '100%', height: 80, elevation: 2,
-
+                width: '100%', height: 80, elevation: 2
             }}>
 
             </View>
