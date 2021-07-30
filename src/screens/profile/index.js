@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, Platform } from 'react-native';
 
 
@@ -9,8 +9,6 @@ import styles from "../styles";
 import localStyle from "./style";
 
 export default ({ navigation }) => {
-
-
 
     const pickImage = async () => {
 
@@ -33,7 +31,6 @@ export default ({ navigation }) => {
             // add the image
         }
     };
-
 
     return (
         <View style={styles.container}>
