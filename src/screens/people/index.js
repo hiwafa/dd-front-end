@@ -16,7 +16,6 @@ export default () => {
     const user = useSelector(getUser);
 
     useEffect(() => {
-
         (async () => {
             try {
 
@@ -24,10 +23,8 @@ export default () => {
                 if (payload && Array.isArray(payload)) setPeople(payload);
 
             } catch (err) {
-
             }
         })();
-
     }, []);
 
     return (
