@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import { Text, FlatList, View, StyleSheet, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import chats from '../../../data/chats';
 import ChatMessage from "../../components/ChatMessage";
 import InputTextBox from "../../components/InputTextBox";
 import { useHeaderHeight } from '@react-navigation/stack';
@@ -31,6 +30,7 @@ export const ChatBox = ({ route: { params: { chatId } } }) => {
   
   useEffect(() => {
 
+    /* from all people, last 50 messages */
     dispatch(fetchMessages({
       token: access_token, chatId,
       only_new: false, num_recent: 50
@@ -41,6 +41,10 @@ export const ChatBox = ({ route: { params: { chatId } } }) => {
       "Authorization": `Bearer ${access_token}`
     };
 
+    /*
+      from all people except myself
+      all messages which is is not delivered to me
+    */
     dispatch(fetchMessages({
       token: access_token, chatId,
       only_new: true
@@ -56,6 +60,10 @@ export const ChatBox = ({ route: { params: { chatId } } }) => {
       }
     }).catch(_ => {});
 
+    /*
+      from all people except myself
+      lat 10 messages which is is not delivered to me
+    */
     const interval = setInterval(async () => {
       dispatch(fetchMessages({
         token: access_token, chatId,

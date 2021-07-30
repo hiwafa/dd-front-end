@@ -15,7 +15,7 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
 
             if (data && Array.isArray(data) && data.length > 0) return data;
 
-            return thunkAPI.rejectWithValue("No Data for chats");
+            return thunkAPI.rejectWithValue("No Data for chatlist");
         } catch (err) {
 
             return thunkAPI.rejectWithValue(err.message);
@@ -77,7 +77,7 @@ const chatsSlice = createSlice({
     },
     extraReducers: {
 
-        /* fetching chats */
+        /* fetching chatlist */
         [fetchChats.pending]: (state, action) => {
             state.status = "pending";
         },
