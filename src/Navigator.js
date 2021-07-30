@@ -38,9 +38,8 @@ const TabNav = () => {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="ChatList" component={ChatList}
-                screenOptions={{
-                    drawUnderTabBar: false
-                }} />
+                // screenOptions={{ drawUnderTabBar: false }}
+            />
             <Tab.Screen name="Profile" component={Profile} />
             <Tab.Screen name="Poeple" component={Poeple} />
         </Tab.Navigator>
@@ -76,7 +75,7 @@ export default () => {
                         && dd.payload.expires_in) {
 
                         dispatch(fetchChats(dd.payload.access_token));
-                         
+
                     } else {
                         alert("Something went wrong, Navigator line 80");
                     }
@@ -105,10 +104,10 @@ export default () => {
                     options={({ route }) => ({
                         headerShown: true,
                         title: route.params.name,
+                        headerStyle: { backgroundColor: '#efddbb' },
                         headerLeft: props => <UserImage userImage={route.params.userImage} />,
                         headerRight: () => <MaterialCommunityIcons name="video-box" size={35}
-                        color="#2037A5" style={styles.videoIcon} />,
-                        headerStyle: { backgroundColor: '#efddbb' }
+                            color="#2037A5" style={styles.videoIcon} />
                     })}
                 />
 
