@@ -4,9 +4,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/actions/UserSlice";
+const backImage = require('../../res/login_background_image.png');
 
 export default ({ navigation: { navigate } }) => {
-
 
   const [state, setState] = useReducer((_, v) => v, {
     password: "", username: ""
@@ -23,11 +23,8 @@ export default ({ navigation: { navigate } }) => {
           grant_type: "password", password, username
         }));
 
-        if (payload && payload.access_token && payload.expires_in) { 
-          
-        } else {
-          console.log("payload::: ", payload);
-          alert("Something went wrong, please try again!");
+        if (!(payload && payload.access_token && payload.expires_in)) {
+          alert("Something went wrong, login line 27");
         }
 
       } else {
@@ -40,22 +37,20 @@ export default ({ navigation: { navigate } }) => {
   }
 
   return (
-    <ImageBackground source={require('../../res/login_background_image.png')} style={{ backgroundColor: 'black', height: '100%' }}>
-      {/*BACKGROUND VIEW*/}
+    <ImageBackground source={backImage}
+      style={{ backgroundColor: 'black', height: '100%' }}>
 
       <ScrollView>
-        {/* <Image source={require('../../res/dd_logo_whiteText_horizontal.svg')} style={styles.logo} /> */}
         <View style={styles.loginContainer}>
-          {/*LOGIN VIEW*/}
 
           <Text style={styles.header}>Welcome,</Text>
           <Text style={styles.header}>Log in here</Text>
 
-          {/*Input fields*/}
           <Text style={styles.fieldText}>Username</Text>
           <View style={styles.field}>
-            <TextInput placeholder='Enter your username' style={{ paddingHorizontal: 10, width: '100%' }}
-              onChangeText={ username => {
+            <TextInput placeholder='Enter your username'
+              style={{ paddingHorizontal: 10, width: '100%' }}
+              onChangeText={username => {
                 setState({ ...state, username });
               }}
             />
@@ -63,21 +58,24 @@ export default ({ navigation: { navigate } }) => {
 
           <Text style={styles.fieldText}>Password</Text>
           <View style={styles.field}>
-            <TextInput secureTextEntry placeholder='Enter your password' style={{ paddingHorizontal: 10, width: '100%' }}
+            <TextInput secureTextEntry placeholder='Enter your password'
+              style={{ paddingHorizontal: 10, width: '100%' }}
               onChangeText={password => {
                 setState({ ...state, password });
               }}
             />
           </View>
 
-          {/*Buttons*/}
           <TouchableOpacity style={styles.button} onPress={onLogin}>
             <Text style={{ color: 'white' }}>
               Login
             </Text>
           </TouchableOpacity>
 
-          <View style={{ flexDirection: 'row', paddingVertical: '10%', marginTop: 20, marginHorizontal: 10 }}>
+          <View style={{
+            flexDirection: 'row', paddingVertical: '10%',
+            marginTop: 20, marginHorizontal: 10
+          }}>
             <Text onPress={() => navigate('Register')} style={styles.linkLeft}>
               Forgot password?
             </Text>
@@ -85,6 +83,7 @@ export default ({ navigation: { navigate } }) => {
               Create account
             </Text>
           </View>
+
         </View>
       </ScrollView>
     </ImageBackground>
