@@ -32,6 +32,12 @@ export default () => {
 
     return (
         <View style={styles.container}>
+            <View style={{
+                width: '100%', height: 80, elevation: 2,
+
+            }}>
+
+            </View>
             <FlatList
                 data={people}
                 keyExtractor={(item) => `@${item.id}`}
@@ -45,6 +51,8 @@ export default () => {
                         <ListItem>
 
                             <Avatar
+                                size='medium'
+                                rounded
                                 title={`${item.first_name[0]}${item.last_name[0]}`}
                                 source={
                                     item.rofile_picture_url ?
@@ -69,8 +77,6 @@ export default () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 1
     }
 });

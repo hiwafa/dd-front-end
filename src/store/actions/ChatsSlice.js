@@ -5,7 +5,6 @@ var qs = require('qs');
 export const fetchChats = createAsyncThunk("chats/fetchChats",
     async (token, thunkAPI) => {
         try {
-
             const headers = {
                 "Authorization": `Bearer ${token}`
             };
@@ -17,7 +16,6 @@ export const fetchChats = createAsyncThunk("chats/fetchChats",
             if (data && Array.isArray(data) && data.length > 0) return data;
 
             return thunkAPI.rejectWithValue("No Data for chats");
-
         } catch (err) {
 
             return thunkAPI.rejectWithValue(err.message);
